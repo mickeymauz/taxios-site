@@ -2,27 +2,31 @@
 <html lang="pl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Polityka prywatności — TaxiOS</title>
   <meta name="description" content="Polityka prywatności aplikacji TaxiOS: jakie dane przetwarza aplikacja, gdzie są przechowywane i z jakich usług zewnętrznych korzysta.">
-  <link rel="icon" href="icon.png" type="image/png">
+  <meta name="theme-color" content="#0c131a">
+  <link rel="icon" href="img/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="wrap">
-    <header class="top">
-      <a class="brand" href="./"><img src="icon.png" alt="" width="40" height="40">TaxiOS</a>
-      <nav>
+  <header class="top solid" id="top">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="img/favicon.png" alt="" width="34" height="34">TaxiOS</a>
+      <nav aria-label="Strona główna">
+        <a href="./#licznik">Jak liczy</a>
         <a href="./#funkcje">Funkcje</a>
-        <a href="polityka-prywatnosci.html">Prywatność</a>
-        <a href="./#kontakt">Kontakt</a>
+        <a href="./#prywatnosc">Prywatność</a>
+        <a href="./#cena">Cena</a>
       </nav>
-    </header>
+      <a class="btn small" href="./#cena">14 dni za darmo</a>
+    </div>
+  </header>
 
-    <article>
+    <article class="doc">
       <h1>Polityka prywatności aplikacji TaxiOS</h1>
       <p class="meta">Wersja z dnia 22 października 2026 r. Dotyczy aplikacji TaxiOS na Androida (pakiet <code>app.taxios.notes</code>).</p>
 
@@ -54,7 +58,7 @@
 
       <h2 id="jakie">3. Jakie dane przetwarza aplikacja</h2>
       <p>Poniższe dane powstają wyłącznie z Twoich działań w aplikacji i są przechowywane lokalnie na telefonie:</p>
-      <table>
+      <div class="tbl"><table>
         <tr><th>Dane</th><th>Po co</th></tr>
         <tr><td>Zmiany, przerwy, kursy, zarobki z platform, napiwki</td><td>Liczenie zarobku po kosztach, godzin online i celów</td></tr>
         <tr><td>Wydatki, zdjęcia paragonów i faktur, notatki tekstowe i głosowe</td><td>Papiery i koszty w jednym miejscu</td></tr>
@@ -63,7 +67,7 @@
         <tr><td>Trasa kursu (punkty GPS), tylko jeśli włączysz zapis trasy</td><td>Archiwum tras i uczenie się kosztu paliwa na kilometr</td></tr>
         <tr><td>Przybliżona pozycja telefonu (ostatnia znana)</td><td>Pogoda i ruch dla Twojej okolicy</td></tr>
         <tr><td>Hasło blokady aplikacji</td><td>Przechowywane wyłącznie jako skrót kryptograficzny z solą; nie da się z niego odczytać hasła</td></tr>
-      </table>
+      </table></div>
 
       <h2 id="uprawnienia">4. Uprawnienia Androida</h2>
       <ul>
@@ -87,12 +91,12 @@
 
       <h2 id="uslugi">6. Usługi zewnętrzne na Twoich kontach</h2>
       <p>TaxiOS nie ma wspólnego konta ani wspólnego klucza do żadnej usługi. Jeśli chcesz korzystać z poniższych funkcji, zakładasz własne konto u danego dostawcy, wpisujesz klucz w aplikacji i od tej chwili Twój telefon łączy się z tym dostawcą bezpośrednio, na zasadach jego regulaminu i polityki prywatności:</p>
-      <table>
+      <div class="tbl"><table>
         <tr><th>Usługa</th><th>Co jest wysyłane</th><th>Kiedy</th></tr>
         <tr><td><a href="https://www.tomtom.com/privacy/" rel="noopener">TomTom</a> (ruch drogowy)</td><td>Przybliżone współrzędne okolicy, Twój klucz</td><td>Gdy wpiszesz klucz; co kilka minut przy otwartej aplikacji</td></tr>
         <tr><td><a href="https://www.weatherapi.com/privacy.aspx" rel="noopener">WeatherAPI.com</a> (pogoda)</td><td>Przybliżone współrzędne okolicy, Twój klucz</td><td>Gdy wpiszesz klucz; co ok. 30 minut przy otwartej aplikacji</td></tr>
         <tr><td><a href="https://policies.google.com/privacy" rel="noopener">Google Drive</a> (kopia na Dysk)</td><td>Pliki kopii danych i dokumentów, które aplikacja sama tworzy w folderze „TaxiOS” na Twoim Dysku</td><td>Tylko po Twoim połączeniu konta Google i włączeniu wysyłki; aplikacja prosi wyłącznie o dostęp do plików, które sama utworzyła (zakres <code>drive.file</code>)</td></tr>
-      </table>
+      </table></div>
       <p>Bez wpisanego klucza dana funkcja po prostu nie działa — aplikacja nie korzysta wtedy z żadnej usługi zastępczej.</p>
 
       <h2 id="platnosci">7. Płatności</h2>
@@ -113,11 +117,13 @@
       <p>Jeśli aplikacja zacznie przetwarzać dane w inny sposób, ta strona zostanie zaktualizowana, a data wersji u góry zmieniona. Istotne zmiany zostaną też opisane w informacji o aktualizacji w Google Play.</p>
     </article>
 
-    <footer>
-      <span>© 2026 TaxiOS</span>
+    <footer class="foot" id="kontakt">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="img/favicon.png" alt="" width="28" height="28">TaxiOS</a>
       <a href="./">Strona główna</a>
-      <a href="mailto:m.krawczynski95@gmail.com">Kontakt: m.krawczynski95@gmail.com</a>
-    </footer>
-  </div>
+      <span>Kontakt: <a href="mailto:m.krawczynski95@gmail.com">m.krawczynski95@gmail.com</a></span>
+      <span>© 2026</span>
+    </div>
+  </footer>
 </body>
 </html>
