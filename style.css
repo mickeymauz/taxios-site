@@ -1,5 +1,5 @@
 /* Układ: nocna jazda. Sekcje „przypięte” (sticky) i sterowane przewijaniem, jedna kolumna treści 1120 px.
-   Kolory i kroje z systemu aplikacji (DESIGN.md w repo TaxiOS). Strona celowo tylko ciemna. */
+   Kolory i kroje z systemu aplikacji (DESIGN.md w repo Rejs OS). Strona celowo tylko ciemna. */
 :root {
   --bg: #0c131a;
   --bg-deep: #070c11;
