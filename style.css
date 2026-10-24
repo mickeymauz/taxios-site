@@ -112,7 +112,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 #licznik .sticky { display: flex; align-items: center; }
 #licznik .grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 72px); align-items: center; width: 100%; padding-top: 48px; }
 .phone { --rot: -16deg; width: min(330px, 100%); max-height: 80vh; max-height: 80svh; margin-inline: auto; transform: perspective(1400px) rotateY(var(--rot)) rotateX(4deg); }
-.phone .glow { position: absolute; left: 11.7%; right: 10.6%; top: 56%; height: 17.2%; border-radius: 14px; box-shadow: 0 0 0 2px var(--meter), 0 0 50px 4px rgba(114,240,198,.45); opacity: var(--g, 0); }
+.phone .glow { position: absolute; left: 3.2%; right: 2.6%; top: 58%; height: 22.8%; border-radius: 14px; box-shadow: 0 0 0 2px var(--meter), 0 0 50px 4px rgba(114,240,198,.45); opacity: var(--g, 0); }
 .ledger h2 { font-size: clamp(32px, 4.2vw, 54px); margin-top: 10px; }
 .meter {
   margin-top: 26px; background: var(--meter-bg); border: 1.5px solid #12302a; border-radius: var(--radius);
@@ -147,9 +147,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* ---------- Telefon (makieta urządzenia) ---------- */
 .device {
-  --ar: 1 / 1.9; /* pod zrzuty 1080×2100; przy zrzutach 1080×2400 ustaw 9 / 20 */
-  position: relative; aspect-ratio: var(--ar); padding: 3.4%;
-  border-radius: 15% / 7%;
+  --ar: 9 / 19.5;
+  position: relative; aspect-ratio: var(--ar); padding: 1.9%;
+  border-radius: 13% / 6%;
   background: linear-gradient(160deg, #161b21 0%, #0a0d10 50%, #12161b 100%);
   box-shadow:
     inset 0 0 0 1px rgba(255,255,255,.14),
@@ -164,12 +164,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .device::after { top: 31%; height: 13%; }
 .device-screen {
   position: relative; height: 100%; display: flex; flex-direction: column;
-  border-radius: 11% / 5%; overflow: hidden; background: var(--bg);
+  border-radius: 11.5% / 5.3%; overflow: hidden; background: var(--bg); padding-bottom: 5.5%;
   box-shadow: none;
 }
-.device-screen img { flex: 1 1 auto; min-height: 0; width: 100%; height: 100%; object-fit: contain; object-position: center top; padding: 0 4.5% 7%; }
+.device-screen img { flex: 1 1 auto; min-height: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .device-screen::before { /* pasek gestów Androida */
-  content: ""; position: absolute; left: 50%; bottom: 2.2%; width: 30%; height: 4px; transform: translateX(-50%);
+  content: ""; position: absolute; left: 50%; bottom: 1.4%; width: 30%; height: 4px; transform: translateX(-50%);
   border-radius: 4px; background: rgba(232,238,245,.55); z-index: 1;
 }
 .device-screen::after { /* odbicie światła na szkle */
@@ -180,7 +180,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   flex: 0 0 auto; position: relative; height: 0; padding-top: 7.5%;
   display: block; color: #e8eef5; font-family: var(--body); font-weight: 600;
 }
-.sbar b { position: absolute; left: 10%; top: 50%; transform: translateY(-38%); font-size: clamp(6px, 1.1vw, 11px); letter-spacing: .02em; }
+.sbar b { position: absolute; left: 9%; top: 50%; transform: translateY(-38%); font-size: clamp(6px, 1.1vw, 11px); letter-spacing: .02em; }
 .sbar::before { /* aparat w ekranie */
   content: ""; position: absolute; left: 50%; top: 50%; width: 4.4%; aspect-ratio: 1; transform: translate(-50%, -42%);
   border-radius: 50%; background: radial-gradient(circle at 35% 35%, #2c3a4c 0 18%, #05070a 46%); box-shadow: 0 0 0 1.5px #000;
