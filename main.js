@@ -181,28 +181,17 @@
   /* ---------- 3. Funkcje w poziomie ---------- */
   function trackScene(sec) {
     const track = sec.querySelector('.track');
-    const HOLD = 0.5; // część kroku, przez którą karta stoi w miejscu
-    let stops = [0], T = 1;
+    let dist = 0, hold = 0;
     const resize = () => {
       if (RM) return;
-      track.style.transform = 'none';
-      // przystanki: wstęp, potem każda karta na środku ekranu
-      stops = [0, ...[...track.querySelectorAll('.card')].map((c) => Math.max(0, c.offsetLeft + c.offsetWidth / 2 - vw / 2))];
-      T = stops.length * HOLD + (stops.length - 1) * (1 - HOLD) + 0.8; // dłużej na ostatniej karcie
-      sec.style.height = Math.round(T * vh * 0.75 + vh) + 'px';
-    };
-    const xAt = (p) => {
-      let t = p * T;
-      for (let i = 0; i < stops.length; i++) {
-        if (t <= HOLD || i === stops.length - 1) return stops[i];
-        t -= HOLD;
-        if (t <= 1 - HOLD) return stops[i] + (stops[i + 1] - stops[i]) * ease(t / (1 - HOLD));
-        t -= 1 - HOLD;
-      }
-      return stops[stops.length - 1];
+      const last = track.querySelector('.card:last-of-type');
+      const pad = Math.max(24, vw * 0.05); // ostatnia karta dochodzi prawie do prawej krawędzi, bez pustego pola
+      dist = Math.max(0, last.offsetLeft + last.offsetWidth + pad - vw);
+      hold = vh * 0.7; // tyle przewijania ekran stoi na ostatniej karcie
+      sec.style.height = Math.round(dist + hold + vh) + 'px';
     };
     resize();
-    return { resize, render(p) { if (!RM) track.style.transform = `translate3d(${(-xAt(p)).toFixed(1)}px,0,0)`; } };
+    return { resize, render(p) { if (!RM) track.style.transform = `translate3d(${(-Math.min(1, p * (dist + hold) / (dist || 1)) * dist).toFixed(1)}px,0,0)`; } };
   }
 
   /* ---------- 4. Bańka: mapa nocą i zapis kursu ---------- */

@@ -191,7 +191,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* ---------- 3. Funkcje (poziomo) ---------- */
 #funkcje .sticky { display: flex; align-items: center; }
-.track { display: flex; gap: clamp(28px, 4vw, 64px); align-items: center; padding-left: var(--gutter-l); padding-right: 12vw; will-change: transform; padding-top: 56px; }
+.track { display: flex; gap: clamp(28px, 4vw, 64px); align-items: center; padding-left: var(--gutter-l); padding-right: max(24px, calc((100vw - var(--max)) / 2)); will-change: transform; padding-top: 56px; }
 .intro { flex: 0 0 auto; width: min(420px, 82vw); padding-left: max(0px, calc((100vw - var(--max)) / 2)); box-sizing: content-box; }
 .intro h2 { font-size: clamp(40px, 5vw, 68px); margin-top: 12px; }
 .intro p { margin-top: 18px; color: var(--muted); max-width: 32ch; }
