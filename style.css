@@ -112,7 +112,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 #licznik .sticky { display: flex; align-items: center; }
 #licznik .grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 72px); align-items: center; width: 100%; padding-top: 48px; }
 .phone { --rot: -16deg; width: min(330px, 100%); max-height: 80vh; max-height: 80svh; margin-inline: auto; transform: perspective(1400px) rotateY(var(--rot)) rotateX(4deg); }
-.phone .glow { position: absolute; left: 8%; right: 8%; top: 58.5%; height: 18%; border-radius: 18px; box-shadow: 0 0 0 2px var(--meter), 0 0 50px 4px rgba(114,240,198,.45); opacity: var(--g, 0); }
+.phone .glow { position: absolute; left: 12.4%; right: 12.6%; top: 55%; height: 16.6%; border-radius: 14px; box-shadow: 0 0 0 2px var(--meter), 0 0 50px 4px rgba(114,240,198,.45); opacity: var(--g, 0); }
 .ledger h2 { font-size: clamp(32px, 4.2vw, 54px); margin-top: 10px; }
 .meter {
   margin-top: 26px; background: var(--meter-bg); border: 1.5px solid #12302a; border-radius: var(--radius);
@@ -147,7 +147,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* ---------- Telefon (makieta urządzenia) ---------- */
 .device {
-  --ar: 9 / 19.5;
+  --ar: 1 / 1.9; /* pod zrzuty 1080×2100; przy zrzutach 1080×2400 ustaw 9 / 20 */
   --rim: 6px;
   position: relative; aspect-ratio: var(--ar); padding: 5%;
   border-radius: 15% / 7%;
@@ -174,7 +174,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   border-radius: 11% / 5%; overflow: hidden; background: var(--bg);
   box-shadow: 0 0 0 2px #000;
 }
-.device-screen img { flex: 1 1 auto; min-height: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.device-screen img { flex: 1 1 auto; min-height: 0; width: 100%; height: 100%; object-fit: contain; object-position: center top; padding: 0 4.5% 7%; }
+.device-screen::before { /* pasek gestów Androida */
+  content: ""; position: absolute; left: 50%; bottom: 2.2%; width: 30%; height: 4px; transform: translateX(-50%);
+  border-radius: 4px; background: rgba(232,238,245,.55); z-index: 1;
+}
 .device-screen::after { /* odbicie światła na szkle */
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(118deg, rgba(255,255,255,.13) 0%, rgba(255,255,255,.04) 26%, rgba(255,255,255,0) 42%, rgba(255,255,255,0) 78%, rgba(255,255,255,.05) 100%);
@@ -183,14 +187,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   flex: 0 0 auto; position: relative; height: 0; padding-top: 7.5%;
   display: block; color: #e8eef5; font-family: var(--body); font-weight: 600;
 }
-.sbar b { position: absolute; left: 8%; top: 50%; transform: translateY(-38%); font-size: clamp(6px, 1.1vw, 11px); letter-spacing: .02em; }
+.sbar b { position: absolute; left: 10%; top: 50%; transform: translateY(-38%); font-size: clamp(6px, 1.1vw, 11px); letter-spacing: .02em; }
 .sbar::before { /* aparat w ekranie */
   content: ""; position: absolute; left: 50%; top: 50%; width: 4.4%; aspect-ratio: 1; transform: translate(-50%, -42%);
   border-radius: 50%; background: radial-gradient(circle at 35% 35%, #2c3a4c 0 18%, #05070a 46%); box-shadow: 0 0 0 1.5px #000;
 }
 .sbar .sig, .sbar .bat { position: absolute; top: 50%; transform: translateY(-38%); }
-.sbar .sig { right: 17%; width: 4%; aspect-ratio: 1; background: linear-gradient(135deg, transparent 50%, #e8eef5 50%); }
-.sbar .bat { right: 8%; width: 6.5%; aspect-ratio: 2.1; border: 1.2px solid #e8eef5; border-radius: 2.5px; background: linear-gradient(90deg, #e8eef5 72%, transparent 72%) content-box; padding: 1px; }
+.sbar .sig { right: 19%; width: 4%; aspect-ratio: 1; background: linear-gradient(135deg, transparent 50%, #e8eef5 50%); }
+.sbar .bat { right: 10%; width: 6.5%; aspect-ratio: 2.1; border: 1.2px solid #e8eef5; border-radius: 2.5px; background: linear-gradient(90deg, #e8eef5 72%, transparent 72%) content-box; padding: 1px; }
 
 /* ---------- 3. Funkcje (poziomo) ---------- */
 #funkcje .sticky { display: flex; align-items: center; }
