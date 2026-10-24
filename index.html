@@ -192,28 +192,53 @@
       </div>
     </section>
 
-    <!-- 5. Prywatność -->
-    <section id="prywatnosc" class="band">
-      <div class="wrap">
-        <div class="head">
-          <div>
+    <!-- 5. Prywatność: dane wlatują do telefonu, serwer autora odpada, Twoje konta podpinasz sam -->
+    <section id="prywatnosc" class="scrolly" data-scene="vault">
+      <div class="sticky">
+        <div class="wrap vault-grid">
+          <div class="vault-copy">
             <p class="eyebrow">Prywatność</p>
             <h2>Twoje liczby zostają w Twoim telefonie.</h2>
+            <p class="lede">Ile zarabiasz, gdzie jeździsz i co tankujesz, to Twoja sprawa. Rejs OS nie zakłada Ci konta i nie trzyma Twoich danych u siebie.</p>
+            <ul class="pillars">
+              <li data-at="0.3"><b>Bez konta</b><span>Instalujesz i jedziesz. Nie podajesz e-maila ani numeru.</span></li>
+              <li data-at="0.4"><b>Dane w pamięci telefonu</b><span>Kursy, zarobki, paragony i trasy. Autor ich nie widzi.</span></li>
+              <li data-at="0.5"><b>Bez reklam</b><span>Płacisz abonament, więc nie jesteś towarem.</span></li>
+              <li data-at="0.6"><b>Bez śledzenia</b><span>Bez analityki. Trasa zapisuje się tylko w trakcie kursu.</span></li>
+            </ul>
+            <p class="more"><a href="polityka-prywatnosci.html">Przeczytaj politykę prywatności →</a></p>
           </div>
-          <p>Ile zarabiasz, gdzie jeździsz i co tankujesz, to Twoja sprawa. Rejs OS nie ma serwera, na który mógłby to wysłać.</p>
+          <div class="vault-stage" aria-hidden="true">
+            <svg class="vlines" viewBox="0 0 100 100" preserveAspectRatio="none"><path class="ln ln-server" pathLength="1" d="M60 36 L82 15"/><path class="ln ln-svc" pathLength="1" d="M42 64 L17 84"/><path class="ln ln-svc" pathLength="1" d="M50 68 L50 84"/><path class="ln ln-svc" pathLength="1" d="M58 64 L83 84"/></svg>
+            <div class="node server"><b>Serwer autora</b><span>nie dostaje Twoich danych</span><em>✕</em></div>
+                        <div class="node svc s1"><b><i>Twój </i>Dysk Google</b><span>kopia na Twoim koncie</span></div>
+            <div class="node svc s2"><b><i>Twoja </i>pogoda</b><span>Twój klucz</span></div>
+            <div class="node svc s3"><b><i>Twój </i>TomTom</b><span>korki, Twój klucz</span></div>
+            <div class="vault-phone device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/27-dane-i-kopia.webp" alt="" width="540" height="1050" loading="lazy"></div><div class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div></div>
+            <span class="chip" data-k="0">Kursy</span>
+            <span class="chip" data-k="1">Zarobki</span>
+            <span class="chip" data-k="2">Paragony</span>
+            <span class="chip" data-k="3">Trasy</span>
+            <span class="chip" data-k="4">Notatki</span>
+            <span class="chip" data-k="5">Grafik</span>
+          </div>
         </div>
-        <div class="nos">
-          <div><b><s>Konto</s></b><span>Nie zakładasz żadnego. Instalujesz i jedziesz.</span></div>
-          <div><b><s>Serwer</s></b><span>Dane są w pamięci telefonu. Autor ich nie widzi.</span></div>
-          <div><b><s>Reklamy</s></b><span>Płacisz abonament, więc nie jesteś towarem.</span></div>
-          <div><b><s>Śledzenie</s></b><span>Bez analityki i bez zapisu poza kursem.</span></div>
+      </div>
+    </section>
+
+    <!-- 5b. Atuty -->
+    <section id="atuty" class="band">
+      <div class="wrap">
+        <p class="eyebrow">Dlaczego Rejs OS</p>
+        <h2 class="atuty-title">Zrobione pod prawdziwą zmianę za kierownicą.</h2>
+        <div class="perks">
+          <article class="perk" style="--i:0"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Lekka obok Bolta i Ubera</h3><p>Ozdobne animacje stają, kiedy przewijasz, więc aplikacja nie dławi telefonu, na którym chodzi nawigacja.</p></article>
+          <article class="perk" style="--i:1"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Pilnuje limitu pracy</h3><p>Liczy godziny bez 6 h odpoczynku, Bolt i Uber razem, i ostrzega przed limitem 12 h.</p></article>
+          <article class="perk" style="--i:2"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></div><h3>Rytm snu</h3><p>Pomaga ułożyć sen pod start zmiany, krok po pół godziny, bez rewolucji z dnia na dzień.</p></article>
+          <article class="perk" style="--i:3"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></div><h3>Radio przy pasażerze</h3><p>Gdy ktoś wsiada, ścisza, wycisza albo zmienia stację. Po kursie wraca do Twojej muzyki.</p></article>
+          <article class="perk" style="--i:4"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></div><h3>Widżety na pulpicie</h3><p>Zmiana, cel dnia i szybkie akcje bez otwierania aplikacji. Kwoty ukryte, dopóki nie dotkniesz oka.</p></article>
+          <article class="perk" style="--i:5"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/><circle cx="12" cy="12" r="9"/></svg></div><h3>Po polsku, wkrótce więcej</h3><p>Ukraiński i angielski są w drodze, żeby każdy kierowca czytał liczby w swoim języku.</p></article>
         </div>
-        <div class="yours">
-          <div><span class="k">Opcjonalnie</span><b>Twój Dysk Google</b><span>Kopia danych na Twoim koncie, w folderze Rejs OS.</span></div>
-          <div><span class="k">Opcjonalnie</span><b>Twoja pogoda</b><span>Prognoza pod zmianę, na Twoim własnym kluczu.</span></div>
-          <div><span class="k">Opcjonalnie</span><b>Twój podgląd ruchu</b><span>Korki w okolicy, na Twoim kluczu TomTom.</span></div>
-        </div>
-        <p class="more"><a href="polityka-prywatnosci.html">Przeczytaj politykę prywatności →</a></p>
       </div>
     </section>
 

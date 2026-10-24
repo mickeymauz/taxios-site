@@ -181,14 +181,28 @@
   /* ---------- 3. Funkcje w poziomie ---------- */
   function trackScene(sec) {
     const track = sec.querySelector('.track');
-    let dist = 0;
+    const HOLD = 0.5; // część kroku, przez którą karta stoi w miejscu
+    let stops = [0], T = 1;
     const resize = () => {
       if (RM) return;
-      dist = Math.max(0, track.scrollWidth - vw);
-      sec.style.height = (dist + vh) + 'px';
+      track.style.transform = 'none';
+      // przystanki: wstęp, potem każda karta na środku ekranu
+      stops = [0, ...[...track.querySelectorAll('.card')].map((c) => Math.max(0, c.offsetLeft + c.offsetWidth / 2 - vw / 2))];
+      T = stops.length * HOLD + (stops.length - 1) * (1 - HOLD) + 0.8; // dłużej na ostatniej karcie
+      sec.style.height = Math.round(T * vh * 0.75 + vh) + 'px';
+    };
+    const xAt = (p) => {
+      let t = p * T;
+      for (let i = 0; i < stops.length; i++) {
+        if (t <= HOLD || i === stops.length - 1) return stops[i];
+        t -= HOLD;
+        if (t <= 1 - HOLD) return stops[i] + (stops[i + 1] - stops[i]) * ease(t / (1 - HOLD));
+        t -= 1 - HOLD;
+      }
+      return stops[stops.length - 1];
     };
     resize();
-    return { resize, render(p) { if (!RM) track.style.transform = `translate3d(${(-p * dist).toFixed(1)}px,0,0)`; } };
+    return { resize, render(p) { if (!RM) track.style.transform = `translate3d(${(-xAt(p)).toFixed(1)}px,0,0)`; } };
   }
 
   /* ---------- 4. Bańka: mapa nocą i zapis kursu ---------- */
@@ -286,7 +300,44 @@
     };
   }
 
-  const makers = { hero: heroScene, meter: meterScene, track: trackScene, bubble: bubbleScene };
+  /* ---------- 5. Prywatność: dane wlatują do telefonu ---------- */
+  function vaultScene(sec) {
+    const stage = sec.querySelector('.vault-stage');
+    const phone = sec.querySelector('.vault-phone');
+    const chips = [...sec.querySelectorAll('.chip')];
+    const pillars = [...sec.querySelectorAll('.pillars li')];
+    const server = sec.querySelector('.node.server');
+    const svcs = [...sec.querySelectorAll('.node.svc')];
+    const lnServer = sec.querySelector('.ln-server');
+    const lnSvc = [...sec.querySelectorAll('.ln-svc')];
+    const start = [[-0.36, -0.3], [0.38, -0.12], [-0.42, 0.08], [0.34, 0.26], [-0.2, 0.38], [0.12, -0.42]];
+    return {
+      resize() {},
+      render(p) {
+        const S = stage.offsetWidth;
+        chips.forEach((c, k) => {
+          const t = ramp((p - 0.02 - k * 0.035) / 0.22);
+          const [sx, sy] = start[k];
+          const drift = Math.sin(p * 9 + k) * 0.015;
+          const x = (sx + drift) * (1 - t) * S, y = (sy - drift) * (1 - t) * S;
+          c.style.transform = `translate(calc(-50% + ${x.toFixed(1)}px), calc(-50% + ${y.toFixed(1)}px)) scale(${(1 - 0.7 * t).toFixed(3)})`;
+          c.style.opacity = (1 - ramp((t - 0.8) / 0.2)).toFixed(3);
+        });
+        phone.style.setProperty('--pg', ramp((p - 0.18) / 0.12).toFixed(3));
+        phone.style.setProperty('--ls', ease(clamp((p - 0.24) / 0.1)).toFixed(3));
+        const so = ramp((p - 0.36) / 0.06);
+        server.style.setProperty('--o', so.toFixed(3));
+        lnServer.style.setProperty('--so', so.toFixed(3));
+        lnServer.style.setProperty('--d', (1 - ramp((p - 0.36) / 0.1)).toFixed(3));
+        server.style.setProperty('--x', ease(clamp((p - 0.46) / 0.06)).toFixed(3));
+        svcs.forEach((n, i) => n.style.setProperty('--o', ramp((p - 0.68 - i * 0.05) / 0.06).toFixed(3)));
+        lnSvc.forEach((l, i) => l.style.setProperty('--d', (1 - ramp((p - 0.66 - i * 0.05) / 0.08)).toFixed(3)));
+        pillars.forEach((li) => li.classList.toggle('on', p >= Number(li.dataset.at)));
+      },
+    };
+  }
+
+  const makers = { hero: heroScene, meter: meterScene, track: trackScene, bubble: bubbleScene, vault: vaultScene };
   const scenes = [...document.querySelectorAll('[data-scene]')].map((sec) => {
     const s = makers[sec.dataset.scene](sec);
     return Object.assign(s, { sec, p: 0, target: 0 });
@@ -301,9 +352,17 @@
     }
   }
 
+  // Atuty: wjeżdżają, gdy sekcja pojawi się na ekranie (a gdyby obserwator nie zadziałał, po 3 s i tak)
+  const perks = document.querySelector('.perks');
+  if (perks) {
+    const show = () => perks.classList.add('in');
+    if (RM || !('IntersectionObserver' in window)) show();
+    else { const io = new IntersectionObserver((e) => { if (e.some((x) => x.isIntersecting)) { show(); io.disconnect(); } }, { threshold: 0.2 }); io.observe(perks); setTimeout(() => { if (perks.getBoundingClientRect().top < innerHeight) show(); }, 3000); }
+  }
+
   // Statyczna wersja: każda scena pokazuje swój kluczowy kadr
   if (RM) {
-    const still = { hero: 0.45, meter: 1, track: 0, bubble: 0.6 };
+    const still = { hero: 0.45, meter: 1, track: 0, bubble: 0.6, vault: 1 };
     scenes.forEach((s) => s.render(still[s.sec.dataset.scene]));
     addEventListener('resize', () => { vw = innerWidth; vh = innerHeight; scenes.forEach((s) => { s.resize(); s.render(still[s.sec.dataset.scene]); }); });
     return;
