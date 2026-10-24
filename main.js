@@ -148,10 +148,10 @@
     const phone = sec.querySelector('.phone');
     const lines = [...sec.querySelectorAll('.lines li')];
     const steps = [ // [od kiedy, kwota po kroku, podpis]
-      [0.04, 380, 'utarg z aplikacji'],
-      [0.2, 305, 'po prowizji platformy'],
-      [0.36, 205, 'po czynszu za auto'],
-      [0.52, 173, 'zarobek po kosztach'],
+      [0.04, 452, 'utarg z aplikacji'],
+      [0.2, 339, 'po prowizji platformy'],
+      [0.36, 210, 'po czynszu za auto'],
+      [0.52, 118, 'zarobek po kosztach'],
     ];
     let last = '';
     return {
