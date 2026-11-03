@@ -3,48 +3,55 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Rejs OS — ile naprawdę zostaje kierowcy</title>
+  <title>Rejs OS · Zmiana pod kontrolą</title>
   <meta name="description" content="Rejs OS liczy na bieżąco, ile zostaje kierowcy taxi na aplikacji po prowizji, czynszu, paliwie i ZUS. Grafik, papiery i bańka nad nawigacją. Dane zostają na Twoim telefonie.">
   <meta name="theme-color" content="#0c131a">
-  <meta property="og:title" content="Rejs OS — ile naprawdę zostaje kierowcy">
+  <meta property="og:title" content="Rejs OS · Zmiana pod kontrolą">
   <meta property="og:description" content="Zarobek po kosztach, godziny, czynsz i papiery. Prywatnie, na Twoim telefonie.">
   <meta property="og:image" content="img/icon-512.webp">
   <link rel="icon" href="img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="img/icon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&family=Exo+2:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>document.documentElement.classList.add('js'); if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('rm');</script>
 </head>
 <body>
   <header class="top" id="top">
     <div class="wrap">
-      <a class="brand" href="./"><img src="img/favicon.png" alt="" width="34" height="34">Rejs OS</a>
-      <nav aria-label="Sekcje strony">
-        <a href="#licznik">Jak liczy</a>
-        <a href="#funkcje">Funkcje</a>
-        <a href="#prywatnosc">Prywatność</a>
-        <a href="#cena">Cena</a>
+      <div class="brandbox">
+        <a class="brand" href="./"><img src="img/favicon.png" alt="" width="34" height="34">Rejs OS</a>
+        <div class="lang" role="group" aria-label="Język strony" data-i18n-aria="lang.aria">
+          <button type="button" data-lang="pl" lang="pl" aria-label="Polski" aria-pressed="true"><i class="flag pl" aria-hidden="true"></i>PL</button>
+          <button type="button" data-lang="uk" lang="uk" aria-label="Українська" aria-pressed="false"><i class="flag uk" aria-hidden="true"></i>UA</button>
+          <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false"><i class="flag en" aria-hidden="true"></i>EN</button>
+        </div>
+      </div>
+      <nav aria-label="Sekcje strony" data-i18n-aria="nav.aria">
+        <a href="#licznik" data-i18n="nav.meter">Jak liczy</a>
+        <a href="#funkcje" data-i18n="nav.features">Funkcje</a>
+        <a href="#prywatnosc" data-i18n="nav.privacy">Prywatność</a>
+        <a href="#cena" data-i18n="nav.price">Cena</a>
       </nav>
-      <a class="btn small" href="#cena">14 dni za darmo</a>
+      <a class="btn small" href="#cena" data-i18n="nav.cta">14 dni za darmo</a>
     </div>
   </header>
 
   <main>
     <!-- 1. Jazda: nocna droga do księżyca, przewijanie = jazda -->
-    <section id="jazda" class="scrolly" data-scene="hero" aria-label="Wstęp">
+    <section id="jazda" class="scrolly" data-scene="hero" aria-label="Wstęp" data-i18n-aria="hero.aria">
       <div class="sticky">
         <canvas aria-hidden="true"></canvas>
 
         <div class="layer" data-range="0 0.24" data-first>
           <div class="wrap">
-            <p class="eyebrow">Dla kierowców na aplikacji</p>
-            <h1 class="hero-title" style="margin-top:14px">Wiesz, ile zarobiłeś. Ale ile <em>Ci zostało</em>?</h1>
-            <p class="hero-sub">Rejs OS liczy to na bieżąco, w trakcie zmiany. Ty jedziesz, aplikacja pilnuje kosztów, godzin i papierów.</p>
+            <p class="eyebrow" data-i18n="hero.eyebrow">Dla kierowców na aplikacji</p>
+            <h1 class="hero-title" style="margin-top:14px" data-i18n="hero.title">Wiesz, ile zarobiłeś. Ale ile <em>Ci zostało</em>?</h1>
+            <p class="hero-sub" data-i18n="hero.sub">Rejs OS liczy to na bieżąco, w trakcie zmiany. Ty jedziesz, aplikacja pilnuje kosztów, godzin i papierów.</p>
             <div class="hero-cta">
-              <a class="btn" href="#cena">Sprawdź 14 dni za darmo</a>
-              <a class="btn ghost" href="#licznik">Zobacz, jak liczy</a>
+              <a class="btn" href="#cena" data-i18n="hero.cta">Sprawdź 14 dni za darmo</a>
+              <a class="btn ghost" href="#licznik" data-i18n="hero.cta2">Zobacz, jak liczy</a>
             </div>
           </div>
         </div>
@@ -52,10 +59,10 @@
         <div class="layer" data-range="0.3 0.62" aria-hidden="true">
           <div class="wrap">
             <p class="costs">
-              <span data-k="0">Po <b>prowizji</b>.</span>
-              <span data-k="1">Po <b>czynszu</b>.</span>
-              <span data-k="2">Po <b>paliwie</b>.</span>
-              <span data-k="3">Po <b>ZUS</b>.</span>
+              <span data-k="0" data-i18n="costs.0">Po <b>prowizji</b>.</span>
+              <span data-k="1" data-i18n="costs.1">Po <b>czynszu</b>.</span>
+              <span data-k="2" data-i18n="costs.2">Po <b>paliwie</b>.</span>
+              <span data-k="3" data-i18n="costs.3">Po <b>ZUS</b>.</span>
             </p>
           </div>
         </div>
@@ -63,11 +70,11 @@
         <div class="layer" data-range="0.7 1.2">
           <div class="wrap">
             <p class="eyebrow">Rejs OS</p>
-            <h2 class="reveal-title" style="margin-top:14px">Jedna liczba, która się liczy: <em>ile zostaje Tobie.</em></h2>
+            <h2 class="reveal-title" style="margin-top:14px" data-i18n="reveal.title">Jedna liczba, która się liczy: <em>ile zostaje Tobie.</em></h2>
           </div>
         </div>
 
-        <div class="hero-hint" data-range="-1 0.08" data-first><span>Przewiń i jedź</span><i></i></div>
+        <div class="hero-hint" data-range="-1 0.08" data-first><span data-i18n="hero.hint">Przewiń i jedź</span><i></i></div>
       </div>
     </section>
 
@@ -80,21 +87,22 @@
             <div class="glow"></div>
           </div>
           <div class="ledger">
-            <p class="eyebrow">Licznik zarobku</p>
-            <h2>Taksometr, który liczy dla Ciebie.</h2>
+            <p class="eyebrow" data-i18n="meter.eyebrow">Licznik zarobku</p>
+            <h2 data-i18n="meter.title">Taksometr, który liczy dla Ciebie.</h2>
             <div class="meter" aria-live="off">
               <div class="lbl" id="meter-lbl">utarg z aplikacji</div>
-              <div class="big" id="meter-big">452 zł</div>
-              <div class="split" id="meter-split" hidden><span>do odłożenia <b>78 zł</b></span><span>zostaje Ci <b>40 zł</b></span></div>
+              <div class="big" id="meter-big">737 zł</div>
+              <div class="split" id="meter-split" hidden data-i18n="meter.split"><span>do odłożenia <b>116 zł</b></span><span>zostaje Ci <b>244 zł</b></span></div>
             </div>
             <ul class="lines">
-              <li data-at="0.04"><span>Utarg z aplikacji</span><b>452 zł</b></li>
-              <li data-at="0.2" class="minus"><span>Prowizja platformy</span><b>−113 zł</b></li>
-              <li data-at="0.36" class="minus"><span>Czynsz za auto</span><b>−129 zł</b></li>
-              <li data-at="0.52" class="minus"><span>Paliwo (z kilometrów)</span><b>−92 zł</b></li>
-              <li data-at="0.68" class="total"><span>Zarobek po kosztach</span><b>118 zł</b></li>
+              <li data-at="0.04" data-i18n="meter.l0"><span>Utarg z aplikacji</span><b>737 zł</b></li>
+              <li data-at="0.17" class="minus" data-i18n="meter.l1"><span>Prowizja platformy</span><b>−184 zł</b></li>
+              <li data-at="0.3" class="minus" data-i18n="meter.l2"><span>Czynsz za auto</span><b>−129 zł</b></li>
+              <li data-at="0.43" class="minus" data-i18n="meter.l3"><span>Paliwo (z kilometrów)</span><b>−52 zł</b></li>
+              <li data-at="0.56" class="minus" data-i18n="meter.l5"><span>Wydatki (kawa, woda)</span><b>−12 zł</b></li>
+              <li data-at="0.68" class="total" data-i18n="meter.l4"><span>Zarobek po kosztach</span><b>360 zł</b></li>
             </ul>
-            <p class="note-ex">Przykładowy dzień. W aplikacji liczby biorą się z Twoich kursów, ustawień czynszu i spalania.</p>
+            <p class="note-ex" data-i18n="meter.note">Przykładowy dzień. W aplikacji liczby biorą się z Twoich kursów, ustawień czynszu i spalania.</p>
           </div>
         </div>
       </div>
@@ -105,72 +113,72 @@
       <div class="sticky">
         <div class="track">
           <div class="intro">
-            <p class="eyebrow">Cały tydzień w kieszeni</p>
-            <h2>Zmiana, grafik, papiery. Bez Excela.</h2>
-            <p>Duże przyciski, jedna liczba na kafel, ciemny ekran, który nie oślepia nocą. Czytelne w uchwycie w sekundę.</p>
-            <p class="arrow">Przewijaj →</p>
+            <p class="eyebrow" data-i18n="feat.eyebrow">Cały tydzień w kieszeni</p>
+            <h2 data-i18n="feat.title">Zmiana, grafik, papiery. Bez Excela.</h2>
+            <p data-i18n="feat.text">Duże przyciski, jedna liczba na kafel, ciemny ekran, który nie oślepia nocą. Czytelne w uchwycie w sekundę.</p>
+            <p class="arrow" data-i18n="feat.arrow">Przewijaj →</p>
           </div>
 
           <article class="card">
-            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/05-dzis.webp" alt="Ekran Dziś przed zmianą: najbliższa zmiana Dzielony, ruch luźny, kafle Notatka, Muzyka, Twoja mapa, Prognoza" width="540" height="1050" loading="lazy"></div></div>
+            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/05-dzis.webp" alt="Ekran Dziś: poniedziałek 2 listopada, dzień pracy Lekki + wieczór, ruch luźny, kafle Notatka, Muzyka, Twoja mapa i Prognoza, najbliższa zmiana 17:00–19:30 i przycisk Start zmiany" data-i18n-alt="c1.alt" width="540" height="1050" loading="lazy"></div></div>
             <div class="txt">
-              <span class="tag">Przed zmianą</span>
-              <h3>Dziś na jednym ekranie</h3>
-              <p>Najbliższa zmiana, ruch na mieście i lista rzeczy do zrobienia, zanim ruszysz. Notatka, muzyka, mapa i prognoza pod kciukiem.</p>
+              <span class="tag" data-i18n="c1.tag">Przed zmianą</span>
+              <h3 data-i18n="c1.h">Dziś na jednym ekranie</h3>
+              <p data-i18n="c1.p">Najbliższa zmiana, ruch na mieście i lista rzeczy do zrobienia, zanim ruszysz. Notatka, muzyka, mapa i prognoza pod kciukiem.</p>
             </div>
           </article>
 
           <article class="card">
-            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/04-zmiana-4.webp" alt="Ekran Muzyka: Radio i Playlisty" width="540" height="1050" loading="lazy"></div></div>
+            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/04-zmiana-4.webp" alt="Ekran Playlisty, kategoria Nastrój (skupienie, spokój, energia, luz): Driver Mode, Traffic Zen, Second Wind, Between Rides, Rain on Glass i Airport Run z okładkami" data-i18n-alt="c2.alt" width="540" height="1050" loading="lazy"></div></div>
             <div class="txt">
-              <span class="tag">W trasie</span>
-              <h3>Radio i playlisty</h3>
-              <p>Polskie i zagraniczne stacje oraz Twoje playlisty jednym dotknięciem, bez szukania po telefonie w trakcie jazdy.</p>
+              <span class="tag" data-i18n="c2.tag">W trasie</span>
+              <h3 data-i18n="c2.h">Playlisty i radio</h3>
+              <p data-i18n="c2.p">Playlisty na każdy nastrój, Twoje własne listy i radio z Polski i ze świata jednym dotknięciem, bez szukania po telefonie w trakcie jazdy.</p>
             </div>
           </article>
 
           <article class="card">
-            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/33-prognoza.webp" alt="Ekran Prognoza: najlepsze godziny 8–11, około 2,2 kursu na godzinę" width="540" height="1050" loading="lazy"></div></div>
+            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/33-prognoza.webp" alt="Ekran Prognoza na poniedziałek: najlepiej 8–11, około 2,5 kursu na godzinę, zwykle 2,2, i wykres kursów w godzinach dnia" data-i18n-alt="c3.alt" width="540" height="1050" loading="lazy"></div></div>
             <div class="txt">
-              <span class="tag">Prognoza</span>
-              <h3>Kiedy opłaca się jechać</h3>
-              <p>Najlepsze godziny dnia policzone z Twoich własnych kursów. Widzisz, ile kursów na godzinę zwykle wpada i kiedy ruszyć.</p>
+              <span class="tag" data-i18n="c3.tag">Prognoza</span>
+              <h3 data-i18n="c3.h">Kiedy opłaca się jechać</h3>
+              <p data-i18n="c3.p">Najlepsze godziny dnia policzone z Twoich własnych kursów. Widzisz, ile kursów na godzinę zwykle wpada i kiedy ruszyć.</p>
             </div>
           </article>
 
           <article class="card">
-            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/07-grafik-2.webp" alt="Ekran Grafik: cel 43 godziny online w tygodniu i 413 zł na rękę" width="540" height="1050" loading="lazy"></div></div>
+            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/07-grafik-2.webp" alt="Ekran Grafik: cele tygodnia, 48,7 h online przy celu 40,5 h, czyli 8,2 h ponad cel, i 911 zł z 1 038 zł na rękę" data-i18n-alt="c4.alt" width="540" height="1050" loading="lazy"></div></div>
             <div class="txt">
-              <span class="tag">Plan</span>
-              <h3>Grafik pod cel</h3>
-              <p>Ustaw, ile godzin online chcesz w tygodniu. Rejs OS ułoży zmiany i przypomni o nich, zanim ruszysz.</p>
+              <span class="tag" data-i18n="c4.tag">Plan</span>
+              <h3 data-i18n="c4.h">Grafik pod cel</h3>
+              <p data-i18n="c4.p">Ustaw, ile godzin online chcesz w tygodniu. Rejs OS ułoży zmiany i przypomni o nich, zanim ruszysz.</p>
             </div>
           </article>
 
           <article class="card">
-            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/11-tydzien-2.webp" alt="Ekran Tydzień: przepływ pieniędzy, 2 824 zł przychodu brutto i rozbicie kosztów" width="540" height="1050" loading="lazy"></div></div>
+            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/11-tydzien-2.webp" alt="Ekran Tydzień: przepływ pieniędzy od 4 497 zł przychodów brutto przez prowizję, opłaty floty, czynsz, paliwo i inne koszty do 2 339 zł zarobku tygodnia; po ZUS, składce zdrowotnej i PIT zostaje 1 565 zł" data-i18n-alt="c5.alt" width="540" height="1050" loading="lazy"></div></div>
             <div class="txt">
-              <span class="tag">Tydzień</span>
-              <h3>Dokąd poszły pieniądze</h3>
-              <p>Przychód brutto, prowizja platform, opłata floty, czynsz, paliwo. I ile zostaje Ci po opłaceniu podatków.</p>
+              <span class="tag" data-i18n="c5.tag">Tydzień</span>
+              <h3 data-i18n="c5.h">Dokąd poszły pieniądze</h3>
+              <p data-i18n="c5.p">Przychód brutto, prowizja platform, opłata floty, czynsz, paliwo. I ile zostaje Ci po opłaceniu podatków.</p>
             </div>
           </article>
 
           <article class="card">
-            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/14-papiery-1.webp" alt="Ekran Papiery: koszty miesiąca 825 zł, paliwo i paragony" width="540" height="1050" loading="lazy"></div></div>
+            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/14-papiery-1.webp" alt="Ekran Papiery: październik 2026, razem 988 zł, paliwo 831 zł z 6 tankowań, paragony 157 zł, faktury 0, notatki 1, przyciski Tankowanie i Wydatek" data-i18n-alt="c6.alt" width="540" height="1050" loading="lazy"></div></div>
             <div class="txt">
-              <span class="tag">Papiery</span>
-              <h3>Paragony w jednym miejscu</h3>
-              <p>Zdjęcie paragonu albo faktury, tankowanie, wydatek. Na koniec miesiąca jedna paczka dla księgowej.</p>
+              <span class="tag" data-i18n="c6.tag">Papiery</span>
+              <h3 data-i18n="c6.h">Paragony w jednym miejscu</h3>
+              <p data-i18n="c6.p">Zdjęcie paragonu albo faktury, tankowanie, wydatek. Na koniec miesiąca jedna paczka dla księgowej.</p>
             </div>
           </article>
 
           <article class="card">
-            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/17-ustawienia-1.webp" alt="Ekran Ustawienia: profil kierowcy, paliwo, ZUS i cele" width="540" height="1050" loading="lazy"></div></div>
+            <div class="shot device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/17-ustawienia-1.webp" alt="Ekran Ustawienia: profil kierowcy Bolt, program BETER, paliwo 0,2173 zł/km, ZUS 1 927 zł miesięcznie i cel 4 500 zł miesięcznie przy 40,5 h online w tygodniu" data-i18n-alt="c7.alt" width="540" height="1050" loading="lazy"></div></div>
             <div class="txt">
-              <span class="tag">Twoje auto</span>
-              <h3>Ustawione pod Ciebie</h3>
-              <p>Platformy, flota, paliwo, ZUS i cele w jednym miejscu. Każda opcja ma opis, co robi.</p>
+              <span class="tag" data-i18n="c7.tag">Twoje auto</span>
+              <h3 data-i18n="c7.h">Ustawione pod Ciebie</h3>
+              <p data-i18n="c7.p">Platformy, flota, paliwo, ZUS i cele w jednym miejscu. Każda opcja ma opis, co robi.</p>
             </div>
           </article>
         </div>
@@ -184,9 +192,9 @@
         <div class="bubble" id="bubble" aria-hidden="true"><i></i><span id="bubble-t">Nowy kurs</span></div>
         <div class="copy">
           <div class="wrap">
-            <p class="eyebrow">Bańka nad nawigacją</p>
-            <h2>Jedno dotknięcie. Bez wychodzenia z mapy.</h2>
-            <p>„Nowy kurs” i „Koniec kursu” wiszą nad nawigacją. Trasa zapisuje się tylko między tymi dwoma dotknięciami, nigdy w pustym przebiegu.</p>
+            <p class="eyebrow" data-i18n="bub.eyebrow">Bańka nad nawigacją</p>
+            <h2 data-i18n="bub.title">Jedno dotknięcie. Bez wychodzenia z mapy.</h2>
+            <p data-i18n="bub.text">„Nowy kurs” i „Koniec kursu” wiszą nad nawigacją. Trasa zapisuje się tylko między tymi dwoma dotknięciami, nigdy w pustym przebiegu.</p>
           </div>
         </div>
       </div>
@@ -197,30 +205,30 @@
       <div class="sticky">
         <div class="wrap vault-grid">
           <div class="vault-copy">
-            <p class="eyebrow">Prywatność</p>
-            <h2>Twoje liczby zostają w Twoim telefonie.</h2>
-            <p class="lede">Ile zarabiasz, gdzie jeździsz i co tankujesz, to Twoja sprawa. Rejs OS nie zakłada Ci konta i nie trzyma Twoich danych u siebie.</p>
+            <p class="eyebrow" data-i18n="priv.eyebrow">Prywatność</p>
+            <h2 data-i18n="priv.title">Twoje liczby zostają w Twoim telefonie.</h2>
+            <p class="lede" data-i18n="priv.lede">Ile zarabiasz, gdzie jeździsz i co tankujesz, to Twoja sprawa. Rejs OS nie zakłada Ci konta i nie trzyma Twoich danych u siebie.</p>
             <ul class="pillars">
-              <li data-at="0.3"><b>Bez konta</b><span>Instalujesz i jedziesz. Nie podajesz e-maila ani numeru.</span></li>
-              <li data-at="0.4"><b>Dane w pamięci telefonu</b><span>Kursy, zarobki, paragony i trasy. Autor ich nie widzi.</span></li>
-              <li data-at="0.5"><b>Bez reklam</b><span>Płacisz abonament, więc nie jesteś towarem.</span></li>
-              <li data-at="0.6"><b>Bez śledzenia</b><span>Bez analityki. Trasa zapisuje się tylko w trakcie kursu.</span></li>
+              <li data-at="0.3" data-i18n="priv.p0"><b>Bez konta</b><span>Instalujesz i jedziesz. Nie podajesz e-maila ani numeru.</span></li>
+              <li data-at="0.4" data-i18n="priv.p1"><b>Dane w pamięci telefonu</b><span>Kursy, zarobki, paragony i trasy. Autor ich nie widzi.</span></li>
+              <li data-at="0.5" data-i18n="priv.p2"><b>Bez reklam</b><span>Płacisz abonament, więc nie jesteś towarem.</span></li>
+              <li data-at="0.6" data-i18n="priv.p3"><b>Bez śledzenia</b><span>Bez analityki. Trasa zapisuje się tylko w trakcie kursu.</span></li>
             </ul>
-            <p class="more"><a href="polityka-prywatnosci.html">Przeczytaj politykę prywatności →</a></p>
+            <p class="more"><a href="polityka-prywatnosci.html" data-i18n="priv.more">Przeczytaj politykę prywatności →</a></p>
           </div>
           <div class="vault-stage" aria-hidden="true">
             <svg class="vlines" viewBox="0 0 100 100" preserveAspectRatio="none"><path class="ln ln-server" pathLength="1" d="M60 36 L82 15"/><path class="ln ln-svc" pathLength="1" d="M42 64 L17 84"/><path class="ln ln-svc" pathLength="1" d="M50 68 L50 84"/><path class="ln ln-svc" pathLength="1" d="M58 64 L83 84"/></svg>
-            <div class="node server"><b>Serwer autora</b><span>nie dostaje Twoich danych</span><em>✕</em></div>
-                        <div class="node svc s1"><b><i>Twój </i>Dysk Google</b><span>kopia na Twoim koncie</span></div>
-            <div class="node svc s2"><b><i>Twoja </i>pogoda</b><span>Twój klucz</span></div>
-            <div class="node svc s3"><b><i>Twój </i>TomTom</b><span>korki, Twój klucz</span></div>
+            <div class="node server" data-i18n="node.server"><b>Serwer autora</b><span>nie dostaje Twoich danych</span><em>✕</em></div>
+                        <div class="node svc s1" data-i18n="node.s1"><b><i>Twój </i>Dysk Google</b><span>kopia na Twoim koncie</span></div>
+            <div class="node svc s2" data-i18n="node.s2"><b><i>Twoja </i>pogoda</b><span>Twój klucz</span></div>
+            <div class="node svc s3" data-i18n="node.s3"><b><i>Twój </i>TomTom</b><span>korki, Twój klucz</span></div>
             <div class="vault-phone device"><div class="device-screen"><span class="sbar" aria-hidden="true"><b>21:37</b><i class="sig"></i><i class="bat"></i></span><img src="img/27-dane-i-kopia.webp" alt="" width="540" height="1050" loading="lazy"></div><div class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div></div>
-            <span class="chip" data-k="0">Kursy</span>
-            <span class="chip" data-k="1">Zarobki</span>
-            <span class="chip" data-k="2">Paragony</span>
-            <span class="chip" data-k="3">Trasy</span>
-            <span class="chip" data-k="4">Notatki</span>
-            <span class="chip" data-k="5">Grafik</span>
+            <span class="chip" data-k="0" data-i18n="chip.0">Kursy</span>
+            <span class="chip" data-k="1" data-i18n="chip.1">Zarobki</span>
+            <span class="chip" data-k="2" data-i18n="chip.2">Paragony</span>
+            <span class="chip" data-k="3" data-i18n="chip.3">Trasy</span>
+            <span class="chip" data-k="4" data-i18n="chip.4">Notatki</span>
+            <span class="chip" data-k="5" data-i18n="chip.5">Grafik</span>
           </div>
         </div>
       </div>
@@ -229,15 +237,15 @@
     <!-- 5b. Atuty -->
     <section id="atuty" class="band">
       <div class="wrap">
-        <p class="eyebrow">Dlaczego Rejs OS</p>
-        <h2 class="atuty-title">Zrobione pod prawdziwą zmianę za kierownicą.</h2>
+        <p class="eyebrow" data-i18n="perks.eyebrow">Dlaczego Rejs OS</p>
+        <h2 class="atuty-title" data-i18n="perks.title">Zrobione pod prawdziwą zmianę za kierownicą.</h2>
         <div class="perks">
-          <article class="perk" style="--i:0"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Lekka obok Bolta i Ubera</h3><p>Ozdobne animacje stają, kiedy przewijasz, więc aplikacja nie dławi telefonu, na którym chodzi nawigacja.</p></article>
-          <article class="perk" style="--i:1"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Pilnuje limitu pracy</h3><p>Liczy godziny bez 6 h odpoczynku, Bolt i Uber razem, i ostrzega przed limitem 12 h.</p></article>
-          <article class="perk" style="--i:2"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></div><h3>Rytm snu</h3><p>Pomaga ułożyć sen pod start zmiany, krok po pół godziny, bez rewolucji z dnia na dzień.</p></article>
-          <article class="perk" style="--i:3"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></div><h3>Radio przy pasażerze</h3><p>Gdy ktoś wsiada, ścisza, wycisza albo zmienia stację. Po kursie wraca do Twojej muzyki.</p></article>
-          <article class="perk" style="--i:4"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></div><h3>Widżety na pulpicie</h3><p>Zmiana, cel dnia i szybkie akcje bez otwierania aplikacji. Kwoty ukryte, dopóki nie dotkniesz oka.</p></article>
-          <article class="perk" style="--i:5"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/><circle cx="12" cy="12" r="9"/></svg></div><h3>Po polsku, ukraińsku i angielsku</h3><p>Język przełączasz w Ustawieniach, żeby każdy kierowca czytał liczby w swoim języku.</p></article>
+          <article class="perk" style="--i:0"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><h3 data-i18n="perk0.h">Lekka obok Bolta i Ubera</h3><p data-i18n="perk0.p">Ozdobne animacje stają, kiedy przewijasz, więc aplikacja nie dławi telefonu, na którym chodzi nawigacja.</p></article>
+          <article class="perk" style="--i:1"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3 data-i18n="perk1.h">Pilnuje limitu pracy</h3><p data-i18n="perk1.p">Liczy godziny bez 6 h odpoczynku, Bolt i Uber razem, i ostrzega przed limitem 12 h.</p></article>
+          <article class="perk" style="--i:2"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h4v-5h4v-4h4V7h4V3"/><path d="M15 3h4v4"/></svg></div><h3 data-i18n="perk2.h">Zarobek po kosztach auta</h3><p data-i18n="perk2.p">Prowizja, opłaty, czynsz, paliwo i wydatki odjęte od razu. Widzisz też, ile odłożyć na ZUS i podatek, i ile naprawdę zostaje.</p></article>
+          <article class="perk" style="--i:3"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></div><h3 data-i18n="perk3.h">Radio przy pasażerze</h3><p data-i18n="perk3.p">Gdy ktoś wsiada, ścisza, wycisza albo zmienia stację. Po kursie wraca do Twojej muzyki.</p></article>
+          <article class="perk" style="--i:4"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></div><h3 data-i18n="perk4.h">Widżety na pulpicie</h3><p data-i18n="perk4.p">Zmiana, cel dnia i szybkie akcje bez otwierania aplikacji. Kwoty ukryte, dopóki nie dotkniesz oka.</p></article>
+          <article class="perk" style="--i:5"><div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/><circle cx="12" cy="12" r="9"/></svg></div><h3 data-i18n="perk5.h">Po polsku, ukraińsku i angielsku</h3><p data-i18n="perk5.p">Język przełączasz w Ustawieniach, żeby każdy kierowca czytał liczby w swoim języku.</p></article>
         </div>
       </div>
     </section>
@@ -247,19 +255,19 @@
       <div class="wrap">
         <div class="ticket">
           <div>
-            <p class="eyebrow">Cena</p>
-            <h2>14 dni za darmo.</h2>
+            <p class="eyebrow" data-i18n="price.eyebrow">Cena</p>
+            <h2 data-i18n="price.title">14 dni za darmo.</h2>
             <ul>
-              <li>wszystkie funkcje od pierwszego dnia</li>
-              <li>bez reklam</li>
-              <li>bez konta</li>
-              <li>rezygnujesz w Google Play</li>
+              <li data-i18n="price.li0">wszystkie funkcje od pierwszego dnia</li>
+              <li data-i18n="price.li1">bez reklam</li>
+              <li data-i18n="price.li2">bez konta</li>
+              <li data-i18n="price.li3">rezygnujesz w Google Play</li>
             </ul>
           </div>
           <div class="price">
-            <div class="p num">24 <small>zł</small></div>
-            <div class="s">miesięcznie, po okresie próbnym</div>
-            <span class="store" aria-disabled="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2.5v19l10.2-9.5zM15.6 13.3 6.5 21.7l11.8-6.8zM18.3 9.1 6.5 2.3l9.1 8.4zM19.6 9.9l-2.4 2.1 2.4 2.1 2.1-1.2c.6-.4.6-1.4 0-1.8z"/></svg>Wkrótce w Google Play</span>
+            <div class="p num" data-i18n="price.amount">24 <small>zł</small></div>
+            <div class="s" data-i18n="price.per">miesięcznie, po okresie próbnym</div>
+            <span class="store" aria-disabled="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2.5v19l10.2-9.5zM15.6 13.3 6.5 21.7l11.8-6.8zM18.3 9.1 6.5 2.3l9.1 8.4zM19.6 9.9l-2.4 2.1 2.4 2.1 2.1-1.2c.6-.4.6-1.4 0-1.8z"/></svg><span data-i18n="price.store">Wkrótce w Google Play</span></span>
           </div>
         </div>
       </div>
@@ -269,12 +277,13 @@
   <footer class="foot" id="kontakt">
     <div class="wrap">
       <a class="brand" href="./"><img src="img/favicon.png" alt="" width="28" height="28">Rejs OS</a>
-      <a href="polityka-prywatnosci.html">Polityka prywatności</a>
-      <span>Kontakt: <a href="mailto:kontakt@rejsos.com">kontakt@rejsos.com</a></span>
+      <a href="polityka-prywatnosci.html" data-i18n="foot.policy">Polityka prywatności</a>
+      <span><span data-i18n="foot.contact">Kontakt:</span> <a href="mailto:michal.wakeline@gmail.com">michal.wakeline@gmail.com</a></span>
       <span>© 2026</span>
     </div>
   </footer>
 
+  <script src="i18n.js" defer></script>
   <script src="main.js" defer></script>
 </body>
 </html>

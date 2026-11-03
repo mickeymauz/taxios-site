@@ -1,0 +1,223 @@
+/* Polityka prywatności: wygląd dokumentu. Kolory, kroje, nagłówek i stopka z style.css (wspólne z główną stroną).
+   Ruch tylko lekki: wejście nagłówka, pojawianie się rozdziałów (12 px), wskaźnik w spisie treści, pasek postępu.
+   Przy „ogranicz ruch” (klasa .rm i reguła w style.css) wszystko stoi, treść jest widoczna od razu. */
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+.pp { position: relative; isolation: isolate; }
+/* Delikatna poświata za nagłówkiem dokumentu (statyczna) */
+.pp::before {
+  content: ""; position: absolute; z-index: -1; inset: 0 0 auto; height: 720px; pointer-events: none;
+  background:
+    radial-gradient(520px 320px at 12% 120px, rgba(245,190,56,.10), transparent 70%),
+    radial-gradient(560px 360px at 88% 60px, rgba(114,240,198,.08), transparent 70%);
+}
+
+/* ---------- Pasek postępu czytania (pod nagłówkiem) ---------- */
+.pp-progress { display: none; }
+.js .pp-progress {
+  display: block; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: linear-gradient(90deg, var(--sign), var(--meter));
+  transform-origin: 0 50%; transform: scaleX(var(--p, 0));
+}
+
+/* ---------- Nagłówek dokumentu ---------- */
+.pp-hero { padding-top: calc(64px + env(safe-area-inset-top, 0px) + clamp(40px, 7vw, 76px)); }
+.pp-hero h1 { margin-top: 14px; font-size: clamp(34px, 5.2vw, 58px); max-width: 18ch; letter-spacing: -0.005em; }
+.pp-hero .meta { margin-top: 16px; color: var(--muted); font-size: 15px; max-width: 62ch; }
+.pp code { font-size: .9em; background: var(--surface-2); padding: 1px 6px; border-radius: 6px; overflow-wrap: anywhere; }
+
+.pp-langnote {
+  display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; max-width: 62ch;
+  padding: 11px 14px; border-radius: 12px; font-size: 15px; color: var(--text);
+  background: color-mix(in srgb, var(--sign) 10%, var(--bg)); border: 1.5px solid color-mix(in srgb, var(--sign) 45%, var(--line));
+}
+.pp-langnote::before { content: "i"; flex: 0 0 auto; display: grid; place-items: center; width: 20px; height: 20px; margin-top: 2px; border-radius: 50%; background: var(--sign); color: var(--sign-ink); font: 700 13px/1 var(--display); }
+
+/* Karty najważniejszych zasad */
+.pp-keys { list-style: none; margin: 34px 0 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.pp-key {
+  position: relative; display: flex; flex-direction: column; gap: 6px; padding: 18px 18px 20px;
+  background: linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--surface) 55%, var(--bg)));
+  border: 1.5px solid var(--line); border-radius: 18px;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+.pp-key:hover { transform: translateY(-3px); border-color: var(--line-strong); box-shadow: 0 14px 30px -18px rgba(0,0,0,.8); }
+.pp-key-ic {
+  display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 8px; border-radius: 12px;
+  color: var(--meter); background: var(--meter-bg); border: 1px solid color-mix(in srgb, var(--meter) 30%, transparent);
+  box-shadow: 0 0 22px -6px rgba(114,240,198,.45);
+}
+.pp-key-ic svg { width: 22px; height: 22px; }
+.pp-key b { font-family: var(--display); font-size: 19px; line-height: 1.15; }
+.pp-key > span:last-child { color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+.pp-keys-src { margin-top: 12px; font-size: 14px; }
+.pp-keys-src a { color: var(--muted); text-decoration: none; }
+.pp-keys-src a:hover { color: var(--sign); }
+
+/* ---------- Układ: spis treści + treść ---------- */
+.pp-layout { margin-top: clamp(40px, 6vw, 72px); padding-bottom: 96px; }
+.pp-doc { min-width: 0; max-width: 760px; }
+
+/* Spis treści — wspólne */
+.pp-toc details { position: relative; }
+.pp-toc summary { list-style: none; cursor: pointer; }
+.pp-toc summary::-webkit-details-marker { display: none; }
+.pp-toc ol { list-style: none; margin: 0; padding: 0; }
+.pp-toc a {
+  display: flex; gap: 10px; align-items: baseline; padding: 7px 12px 7px 16px; border-radius: 10px;
+  color: var(--muted); text-decoration: none; font-size: 15px; line-height: 1.35;
+  transition: color .2s, background .2s;
+}
+.pp-toc a:hover { color: var(--text); background: color-mix(in srgb, var(--surface-2) 60%, transparent); }
+.pp-toc .no { flex: 0 0 auto; min-width: 1.75em; font: 600 12px/1.35 var(--display); letter-spacing: .06em; color: var(--faint); font-variant-numeric: tabular-nums; transition: color .2s; }
+.pp-toc a[aria-current] { color: var(--text); }
+.pp-toc a[aria-current] .no { color: var(--sign); }
+.pp-toc-ind { display: none; }
+
+/* Komputer: spis przyklejony z boku, wskaźnik aktywnego rozdziału */
+@media (min-width: 1000px) {
+  .pp-layout { display: grid; grid-template-columns: 252px minmax(0, 1fr); gap: 64px; align-items: start; }
+  .pp-toc { position: sticky; top: calc(64px + env(safe-area-inset-top, 0px) + 28px); }
+  .pp-toc summary { display: none; }
+  .pp-toc details::before { content: "Spis treści"; display: block; margin: 0 0 10px 16px; font: 600 12.5px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--sign); }
+  .pp-toc ol { border-left: 1.5px solid var(--line); }
+  .pp-toc a { border-radius: 0 10px 10px 0; }
+  .js .pp-toc-ind {
+    display: block; position: absolute; left: 0; top: 0; width: 2px; height: 0; border-radius: 2px;
+    background: var(--sign); box-shadow: 0 0 12px rgba(245,190,56,.6);
+    opacity: 0; transition: transform .35s cubic-bezier(.2,.7,.2,1), height .35s cubic-bezier(.2,.7,.2,1), opacity .25s;
+  }
+}
+
+/* Telefon i tablet: zwijany pasek pod nagłówkiem z nazwą bieżącego rozdziału */
+@media (max-width: 999.98px) {
+  /* Pasek na całą szerokość, z tłem, żeby treść nie prześwitywała nad nim */
+  .pp-toc {
+    position: sticky; top: calc(64px + env(safe-area-inset-top, 0px)); z-index: 40; margin-bottom: 8px;
+    margin-left: calc(-1 * var(--gutter-l)); margin-right: calc(-1 * var(--gutter-r));
+    padding: 8px var(--gutter-r) 10px var(--gutter-l);
+    background: linear-gradient(to bottom, var(--bg) 70%, color-mix(in srgb, var(--bg) 0%, transparent));
+  }
+  .pp-toc summary {
+    display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 14px;
+    background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--line); border-radius: 14px; box-shadow: 0 10px 24px -16px rgba(0,0,0,.9);
+  }
+  .pp-toc-lbl { flex: 0 0 auto; font: 600 12.5px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--sign); }
+  .pp-toc-cur { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--muted); font-size: 14.5px; }
+  .pp-toc-chev { flex: 0 0 auto; width: 18px; height: 18px; margin-left: auto; color: var(--muted); transition: transform .25s; }
+  .pp-toc details[open] .pp-toc-chev { transform: rotate(180deg); }
+  .pp-toc ol { margin-top: 8px; padding: 8px; background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; }
+  /* Z JS lista rozwija się nad treścią i ma własne przewijanie */
+  .js .pp-toc ol {
+    position: absolute; left: 0; right: 0; top: 100%; overflow-y: auto; overscroll-behavior: contain;
+    max-height: calc(100svh - 64px - env(safe-area-inset-top, 0px) - 80px);
+    box-shadow: 0 24px 48px -20px rgba(0,0,0,.95);
+  }
+  .js:not(.rm) .pp-toc details[open] ol { animation: ppDrop .22s cubic-bezier(.2,.7,.2,1); }
+  .pp-toc a { padding: 10px 12px; }
+  .pp-toc a[aria-current] { background: color-mix(in srgb, var(--sign) 12%, transparent); }
+}
+
+/* ---------- Rozdziały ---------- */
+/* Po skoku ze spisu nagłówek rozdziału staje tuż pod nagłówkiem strony (telefon: pod paskiem spisu) */
+.pp-sec { scroll-margin-top: calc(64px + env(safe-area-inset-top, 0px) + 32px); }
+.pp-sec:first-child { scroll-margin-top: calc(64px + env(safe-area-inset-top, 0px) + 80px); }
+.pp-sec + .pp-sec { margin-top: 56px; padding-top: 48px; border-top: 1px dashed var(--line); }
+@media (min-width: 1000px) {
+  .pp-sec { scroll-margin-top: calc(64px + env(safe-area-inset-top, 0px) - 20px); }
+  .pp-sec:first-child { scroll-margin-top: calc(64px + env(safe-area-inset-top, 0px) + 28px); }
+}
+.pp-sec h2 { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; font-size: clamp(23px, 2.6vw, 28px); line-height: 1.15; }
+.pp-ic {
+  flex: 0 0 auto; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px;
+  color: var(--sign); background: var(--surface); border: 1.5px solid var(--line);
+  transition: border-color .35s, background .35s, box-shadow .35s;
+}
+.pp-ic svg { width: 21px; height: 21px; }
+.pp-sec.is-active .pp-ic { border-color: color-mix(in srgb, var(--sign) 60%, var(--line)); background: color-mix(in srgb, var(--sign) 10%, var(--surface)); box-shadow: 0 0 20px -6px rgba(245,190,56,.45); }
+
+.pp-doc p, .pp-doc li { color: #cfd8e3; }
+.pp-doc p + p, .pp-doc ul + p, .pp-doc .tbl + p { margin-top: 14px; }
+.pp-doc strong { color: var(--text); }
+.pp-doc a { text-underline-offset: 3px; overflow-wrap: break-word; }
+
+/* Dane wydawcy */
+.pp-card { margin-top: 14px; padding: 16px 18px; background: var(--surface); border: 1.5px solid var(--line); border-left: 3px solid var(--sign); border-radius: 0 16px 16px 0; line-height: 1.7; }
+
+/* Zasada z rozdziału 2 — wyróżniona */
+.pp-note {
+  position: relative; margin: 4px 0 18px; padding: 18px 20px; border-radius: 18px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--meter) 9%, var(--surface)), var(--surface) 60%);
+  border: 1.5px solid color-mix(in srgb, var(--meter) 38%, var(--line));
+  box-shadow: 0 0 0 1px rgba(114,240,198,.04), 0 18px 40px -26px rgba(114,240,198,.45);
+}
+.pp-note p { margin: 0; color: var(--text); }
+
+/* Listy jako spokojne wiersze */
+.pp-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+.pp-list li { position: relative; margin: 0; padding: 12px 16px 12px 36px; background: color-mix(in srgb, var(--surface) 70%, transparent); border: 1px solid var(--line); border-radius: 14px; }
+.pp-list li::before { content: ""; position: absolute; left: 15px; top: 21px; width: 8px; height: 8px; border-radius: 3px; background: var(--meter); box-shadow: 0 0 10px rgba(114,240,198,.55); }
+
+/* Tabele: na komputerze tabela, na telefonie karty (bez przewijania w bok) */
+.pp-tbl { margin: 16px 0; border: 1.5px solid var(--line); border-radius: 16px; overflow: hidden; }
+.pp-tbl table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.pp-tbl th, .pp-tbl td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.pp-tbl tbody tr:last-child td { border-bottom: 0; }
+.pp-tbl th { font: 600 13px/1.3 var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--surface); }
+.pp-tbl td:first-child { color: var(--text); font-weight: 500; }
+.pp-tbl tbody tr { transition: background .2s; }
+.pp-tbl tbody tr:hover { background: color-mix(in srgb, var(--surface) 60%, transparent); }
+@media (max-width: 640px) {
+  .pp-tbl { border: 0; border-radius: 0; overflow: visible; }
+  .pp-tbl table, .pp-tbl tbody, .pp-tbl tr, .pp-tbl td { display: block; width: auto; }
+  .pp-tbl thead { display: none; } /* nagłówki kolumn są przy każdej wartości (data-label) */
+  .pp-tbl tbody { display: grid; gap: 10px; }
+  .pp-tbl tr { padding: 14px 16px; background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; }
+  .pp-tbl td { padding: 0; border: 0; }
+  .pp-tbl td + td { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+  .pp-tbl td::before { content: attr(data-label); display: block; margin-bottom: 2px; font: 600 11.5px/1.3 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+  .pp-tbl td:first-child { font-family: var(--display); font-size: 17px; font-weight: 600; }
+  .pp-tbl tbody tr:hover { background: var(--surface); }
+}
+
+/* ---------- Przycisk „do góry” ---------- */
+.pp-totop {
+  position: fixed; z-index: 45; right: calc(var(--gutter-r) + 4px); bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  color: var(--sign-ink); background: var(--sign); box-shadow: 0 4px 0 color-mix(in srgb, var(--sign) 55%, black), 0 12px 24px -10px rgba(0,0,0,.8);
+  transition: opacity .3s, transform .3s, visibility .3s;
+}
+.pp-totop svg { width: 22px; height: 22px; }
+.pp-totop:hover { transform: translateY(2px); }
+.js .pp-totop:not(.show) { opacity: 0; visibility: hidden; transform: translateY(12px); }
+
+/* ---------- Ruch: wejście nagłówka i pojawianie się rozdziałów ---------- */
+@keyframes ppIn { from { opacity: 0; transform: translateY(12px); } }
+@keyframes ppDrop { from { opacity: 0; transform: translateY(-8px); } }
+.js:not(.rm) .pp-in { animation: ppIn .7s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--d, 0) * 70ms); }
+.pp-reveal:not(.rm) .pp-sec { transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.pp-reveal:not(.rm) .pp-sec:not(.in) { opacity: 0; transform: translateY(14px); }
+
+/* ---------- Szerokości ---------- */
+@media (max-width: 999.98px) { .pp-keys { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) {
+  .pp-keys { grid-template-columns: 1fr; gap: 10px; margin-top: 26px; }
+  .pp-key { display: grid; grid-template-columns: 42px 1fr; column-gap: 14px; row-gap: 2px; padding: 14px 16px; }
+  .pp-key-ic { grid-row: span 2; margin: 2px 0 0; }
+  .pp-key b { font-size: 17.5px; }
+  .pp-sec h2 { gap: 12px; }
+  .pp-ic { width: 38px; height: 38px; border-radius: 11px; }
+  .pp-ic svg { width: 19px; height: 19px; }
+  .pp-sec + .pp-sec { margin-top: 44px; padding-top: 40px; }
+  .pp-list li { padding: 11px 14px 11px 32px; }
+  .pp-list li::before { left: 13px; }
+}
+
+/* ---------- Druk: sam dokument ---------- */
+@media print {
+  .top, .pp-toc, .pp-totop, .foot, .pp-progress { display: none !important; }
+  .pp-sec { opacity: 1 !important; transform: none !important; }
+  .pp-hero { padding-top: 0; }
+}

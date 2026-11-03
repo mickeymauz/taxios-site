@@ -7,123 +7,208 @@
   <meta name="description" content="Polityka prywatności aplikacji Rejs OS: jakie dane przetwarza aplikacja, gdzie są przechowywane i z jakich usług zewnętrznych korzysta.">
   <meta name="theme-color" content="#0c131a">
   <link rel="icon" href="img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="img/icon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&family=Exo+2:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="polityka.css">
+  <script>document.documentElement.classList.add('js'); if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('rm');
+    /* Rozdziały pojawiają się przy przewijaniu; gdyby polityka.js się nie wczytał, po 3 s treść i tak jest widoczna */
+    if ('IntersectionObserver' in window) { document.documentElement.classList.add('pp-reveal'); setTimeout(function () { if (!window.ppReady) document.documentElement.classList.remove('pp-reveal'); }, 3000); }</script>
 </head>
-<body>
+<body class="pp-page">
   <header class="top solid" id="top">
     <div class="wrap">
-      <a class="brand" href="./"><img src="img/favicon.png" alt="" width="34" height="34">Rejs OS</a>
-      <nav aria-label="Strona główna">
-        <a href="./#licznik">Jak liczy</a>
-        <a href="./#funkcje">Funkcje</a>
-        <a href="./#prywatnosc">Prywatność</a>
-        <a href="./#cena">Cena</a>
+      <div class="brandbox">
+        <a class="brand" href="./"><img src="img/favicon.png" alt="" width="34" height="34">Rejs OS</a>
+        <div class="lang" role="group" aria-label="Język strony" data-i18n-aria="lang.aria">
+          <button type="button" data-lang="pl" lang="pl" aria-label="Polski" aria-pressed="true"><i class="flag pl" aria-hidden="true"></i>PL</button>
+          <button type="button" data-lang="uk" lang="uk" aria-label="Українська" aria-pressed="false"><i class="flag uk" aria-hidden="true"></i>UA</button>
+          <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false"><i class="flag en" aria-hidden="true"></i>EN</button>
+        </div>
+      </div>
+      <nav aria-label="Sekcje strony" data-i18n-aria="nav.aria">
+        <a href="./#licznik" data-i18n="nav.meter">Jak liczy</a>
+        <a href="./#funkcje" data-i18n="nav.features">Funkcje</a>
+        <a href="./#prywatnosc" data-i18n="nav.privacy">Prywatność</a>
+        <a href="./#cena" data-i18n="nav.price">Cena</a>
       </nav>
-      <a class="btn small" href="./#cena">14 dni za darmo</a>
+      <a class="btn small" href="./#cena" data-i18n="nav.cta">14 dni za darmo</a>
     </div>
+    <i class="pp-progress" aria-hidden="true"></i>
   </header>
 
-    <article class="doc">
-      <h1>Polityka prywatności aplikacji Rejs OS</h1>
-      <p class="meta">Wersja z dnia 24 października 2026 r. Dotyczy aplikacji Rejs OS na Androida (pakiet <code>app.rejsos.notes</code>).</p>
+  <main class="pp" lang="pl">
+    <!-- Nagłówek dokumentu + najważniejsze zasady (skrót z rozdziału 2, pełna treść niżej bez zmian) -->
+    <div class="wrap pp-hero">
+      <p class="eyebrow pp-in" style="--d:0">Prywatność</p>
+      <h1 class="pp-in" style="--d:1">Polityka prywatności aplikacji Rejs OS</h1>
+      <p class="meta pp-in" style="--d:2">Wersja z dnia 2 listopada 2026 r. Dotyczy aplikacji Rejs OS na Androida (pakiet <code>app.rejsos.notes</code>).</p>
+      <p class="pp-langnote" data-doc="note" hidden></p>
 
-      <div class="toc">
-        <strong>Spis treści</strong>
-        <ol>
-          <li><a href="#kto">Kto odpowiada za dane</a></li>
-          <li><a href="#zasada">Zasada: dane zostają na telefonie</a></li>
-          <li><a href="#jakie">Jakie dane przetwarza aplikacja</a></li>
-          <li><a href="#uprawnienia">Uprawnienia Androida</a></li>
-          <li><a href="#lokalizacja">Lokalizacja, także w tle</a></li>
-          <li><a href="#uslugi">Usługi zewnętrzne na Twoich kontach</a></li>
-          <li><a href="#platnosci">Płatności</a></li>
-          <li><a href="#kopie">Kopie danych i ich usuwanie</a></li>
-          <li><a href="#prawa">Twoje prawa</a></li>
-          <li><a href="#zmiany">Zmiany tej polityki</a></li>
-        </ol>
-      </div>
-
-      <h2 id="kto">1. Kto odpowiada za dane</h2>
-      <p>Administratorem danych osobowych w rozumieniu RODO, w zakresie, w jakim aplikacja w ogóle je przetwarza, jest wydawca aplikacji Rejs OS:</p>
-      <p><strong>Michał Krawczyński</strong> (działalność gospodarcza, NIP 9571150909, REGON 523624655)<br>ul. Rolna 109, 10‑804 Olsztyn<br>e‑mail: <a href="mailto:kontakt@rejsos.com">kontakt@rejsos.com</a></p>
-
-      <h2 id="zasada">2. Zasada: dane zostają na telefonie</h2>
-      <div class="note">
-        <p style="margin:0"><strong>Rejs OS nie ma własnego serwera, nie wymaga założenia konta i nie wysyła Twoich danych do wydawcy.</strong> Wszystko, co wpisujesz i zapisujesz w aplikacji, jest przechowywane wyłącznie w pamięci Twojego telefonu. Aplikacja nie zawiera reklam ani narzędzi analitycznych i nie śledzi Twojej aktywności.</p>
-      </div>
-      <p>Jedyne połączenia sieciowe, jakie aplikacja wykonuje, idą do usług, które sam włączysz i do których podasz własne klucze lub własne konto (rozdział 6), oraz do Google Play w celu obsługi subskrypcji (rozdział 7).</p>
-
-      <h2 id="jakie">3. Jakie dane przetwarza aplikacja</h2>
-      <p>Poniższe dane powstają wyłącznie z Twoich działań w aplikacji i są przechowywane lokalnie na telefonie:</p>
-      <div class="tbl"><table>
-        <tr><th>Dane</th><th>Po co</th></tr>
-        <tr><td>Zmiany, przerwy, kursy, zarobki z platform, napiwki</td><td>Liczenie zarobku po kosztach, godzin online i celów</td></tr>
-        <tr><td>Wydatki, zdjęcia paragonów i faktur, notatki tekstowe i głosowe</td><td>Papiery i koszty w jednym miejscu</td></tr>
-        <tr><td>Plan tygodnia, ustawienia (czynsz, platformy, ZUS, cele, kolor)</td><td>Działanie aplikacji</td></tr>
-        <tr><td>Klucze do usług zewnętrznych, które sam wpiszesz (TomTom, usługa pogody, identyfikator klienta Google)</td><td>Wywoływanie tych usług z Twojego telefonu w Twoim imieniu; klucze nie trafiają do kopii danych ani do wydawcy</td></tr>
-        <tr><td>Trasa kursu (punkty GPS), tylko jeśli włączysz zapis trasy</td><td>Archiwum tras i uczenie się kosztu paliwa na kilometr</td></tr>
-        <tr><td>Przybliżona pozycja telefonu (ostatnia znana)</td><td>Pogoda i ruch dla Twojej okolicy</td></tr>
-        <tr><td>Hasło blokady aplikacji</td><td>Przechowywane wyłącznie jako skrót kryptograficzny z solą; nie da się z niego odczytać hasła</td></tr>
-      </table></div>
-
-      <h2 id="uprawnienia">4. Uprawnienia Androida</h2>
-      <ul>
-        <li><strong>Lokalizacja</strong> — pogoda i ruch dla Twojej okolicy, ostrzeżenia o korkach podczas otwartej zmiany oraz zapis trasy kursu (rozdział 5).</li>
-        <li><strong>Aparat</strong> — zdjęcia paragonów i dokumentów. Zdjęcia zostają na telefonie.</li>
-        <li><strong>Mikrofon</strong> — notatki głosowe i dyktowanie. Dyktowanie korzysta z systemowego rozpoznawania mowy Androida, które — zależnie od ustawień Twojego telefonu — może przetwarzać dźwięk u dostawcy tej usługi (zwykle Google) na jego zasadach. Nagrania notatek głosowych zostają na telefonie.</li>
-        <li><strong>Wyświetlanie nad innymi aplikacjami</strong> — opcjonalna „bańka” z przyciskami „Nowy kurs / Koniec kursu” widoczna nad nawigacją. Bańka nie odczytuje treści innych aplikacji.</li>
-        <li><strong>Powiadomienia</strong> — informacja „kurs w toku” podczas zapisu trasy oraz przypomnienia.</li>
-        <li><strong>Biometria</strong> — odblokowanie blokady aplikacji odciskiem palca; obsługuje to system Android, aplikacja nie ma dostępu do danych biometrycznych.</li>
+      <ul class="pp-keys" aria-label="Najważniejsze zasady">
+        <li class="pp-key pp-in" style="--d:3">
+          <span class="pp-key-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><rect x="9" y="10.5" width="6" height="5" rx="1"/><path d="M10 10.5V9a2 2 0 0 1 4 0v1.5"/></svg></span>
+          <b>Dane zostają na telefonie</b>
+          <span>Wszystko, co wpisujesz i zapisujesz w aplikacji, jest przechowywane wyłącznie w pamięci Twojego telefonu.</span>
+        </li>
+        <li class="pp-key pp-in" style="--d:4">
+          <span class="pp-key-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M3 21c0-3.9 3.1-7 7-7 1.4 0 2.6.4 3.7 1"/><path d="M16 16l5 5M21 16l-5 5"/></svg></span>
+          <b>Bez konta</b>
+          <span>Rejs OS nie wymaga założenia konta.</span>
+        </li>
+        <li class="pp-key pp-in" style="--d:5">
+          <span class="pp-key-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="10" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01M16 15l5 5M21 15l-5 5"/></svg></span>
+          <b>Bez serwera autora</b>
+          <span>Rejs OS nie ma własnego serwera i nie wysyła Twoich danych do wydawcy.</span>
+        </li>
+        <li class="pp-key pp-in" style="--d:6">
+          <span class="pp-key-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 5.1A10 10 0 0 1 12 5c5 0 9 4.5 10 7-.4 1-1.2 2.3-2.4 3.5M6.6 6.6C4.4 8 2.8 10.1 2 12c1 2.5 5 7 10 7 1.9 0 3.6-.6 5-1.5"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg></span>
+          <b>Bez reklam i analityki</b>
+          <span>Aplikacja nie zawiera reklam ani narzędzi analitycznych i nie śledzi Twojej aktywności.</span>
+        </li>
       </ul>
-      <p>Każde uprawnienie możesz odmówić lub cofnąć w ustawieniach Androida; aplikacja działa wtedy bez danej funkcji.</p>
+      <p class="pp-keys-src pp-in" style="--d:7"><a href="#zasada">Skrót z rozdziału 2 →</a></p>
+    </div>
 
-      <h2 id="lokalizacja">5. Lokalizacja, także w tle</h2>
-      <p>Aplikacja korzysta z lokalizacji w trzech sytuacjach:</p>
-      <ul>
-        <li><strong>Pogoda i ruch</strong> — gdy aplikacja jest otwarta, Twoje przybliżone współrzędne są wysyłane do usługi pogody i do TomTom (na Twoich własnych kluczach), aby pokazać prognozę i natężenie ruchu dla Twojej okolicy.</li>
-        <li><strong>Ostrzeżenia o korkach</strong> — tylko podczas otwartej zmiany i tylko gdy je włączysz w Ustawieniach.</li>
-        <li><strong>Zapis trasy kursu, również gdy aplikacja jest zamknięta lub w tle</strong> — tylko gdy włączysz go w Ustawieniach. Zapis zaczyna się w chwili, gdy sam naciśniesz „Nowy kurs”, i kończy się w chwili naciśnięcia „Koniec kursu”. W tym czasie Android pokazuje stałe powiadomienie „Rejs OS · kurs w toku”. Punkty trasy są zapisywane wyłącznie na telefonie i służą do archiwum tras oraz liczenia kosztu paliwa; nie są nigdzie wysyłane.</li>
-      </ul>
-      <p>Poza kursem aplikacja nie zbiera lokalizacji w tle.</p>
+    <div class="wrap pp-layout">
+      <!-- Spis treści: na komputerze przyklejony z boku, na telefonie zwijany pasek pod nagłówkiem -->
+      <nav class="pp-toc" aria-label="Spis treści">
+        <details open>
+          <summary>
+            <span class="pp-toc-lbl">Spis treści</span>
+            <span class="pp-toc-cur" aria-hidden="true"></span>
+            <svg class="pp-toc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <ol>
+            <li><a href="#kto"><span class="no">01</span>Kto odpowiada za dane</a></li>
+            <li><a href="#zasada"><span class="no">02</span>Zasada: dane zostają na telefonie</a></li>
+            <li><a href="#jakie"><span class="no">03</span>Jakie dane przetwarza aplikacja</a></li>
+            <li><a href="#uprawnienia"><span class="no">04</span>Uprawnienia Androida</a></li>
+            <li><a href="#lokalizacja"><span class="no">05</span>Lokalizacja, także w tle</a></li>
+            <li><a href="#uslugi"><span class="no">06</span>Usługi zewnętrzne na Twoich kontach</a></li>
+            <li><a href="#platnosci"><span class="no">07</span>Płatności</a></li>
+            <li><a href="#kopie"><span class="no">08</span>Kopie danych i ich usuwanie</a></li>
+            <li><a href="#prawa"><span class="no">09</span>Twoje prawa</a></li>
+            <li><a href="#zmiany"><span class="no">10</span>Zmiany tej polityki</a></li>
+          </ol>
+          <i class="pp-toc-ind" aria-hidden="true"></i>
+        </details>
+      </nav>
 
-      <h2 id="uslugi">6. Usługi zewnętrzne na Twoich kontach</h2>
-      <p>Rejs OS nie ma wspólnego konta ani wspólnego klucza do żadnej usługi. Jeśli chcesz korzystać z poniższych funkcji, zakładasz własne konto u danego dostawcy, wpisujesz klucz w aplikacji i od tej chwili Twój telefon łączy się z tym dostawcą bezpośrednio, na zasadach jego regulaminu i polityki prywatności:</p>
-      <div class="tbl"><table>
-        <tr><th>Usługa</th><th>Co jest wysyłane</th><th>Kiedy</th></tr>
-        <tr><td><a href="https://www.tomtom.com/privacy/" rel="noopener">TomTom</a> (ruch drogowy)</td><td>Przybliżone współrzędne okolicy, Twój klucz</td><td>Gdy wpiszesz klucz; co kilka minut przy otwartej aplikacji</td></tr>
-        <tr><td><a href="https://www.weatherapi.com/privacy.aspx" rel="noopener">WeatherAPI.com</a> (pogoda)</td><td>Przybliżone współrzędne okolicy, Twój klucz</td><td>Gdy wpiszesz klucz; co ok. 30 minut przy otwartej aplikacji</td></tr>
-        <tr><td><a href="https://policies.google.com/privacy" rel="noopener">Google Drive</a> (kopia na Dysk)</td><td>Pliki kopii danych i dokumentów, które aplikacja sama tworzy w folderze „Rejs OS” na Twoim Dysku</td><td>Tylko po Twoim połączeniu konta Google i włączeniu wysyłki; aplikacja prosi wyłącznie o dostęp do plików, które sama utworzyła (zakres <code>drive.file</code>)</td></tr>
-      </table></div>
-      <p>Bez wpisanego klucza dana funkcja po prostu nie działa — aplikacja nie korzysta wtedy z żadnej usługi zastępczej.</p>
+      <article class="pp-doc">
+        <section class="pp-sec" id="kto">
+          <h2><span class="pp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16"/><path d="M14 9h5a1 1 0 0 1 1 1v11"/><path d="M3 21h18M8 8h2M8 12h2M8 16h2"/></svg></span><span>1. Kto odpowiada za dane</span></h2>
+          <p>Administratorem danych osobowych w rozumieniu RODO, w zakresie, w jakim aplikacja w ogóle je przetwarza, jest wydawca aplikacji Rejs OS:</p>
+          <p class="pp-card"><strong>Michał Krawczyński WakeLine</strong> (działalność gospodarcza, NIP 9571150909, REGON 523624655)<br>ul. Rolna 109, 10‑804 Olsztyn<br>e‑mail: <a href="mailto:michal.wakeline@gmail.com">michal.wakeline@gmail.com</a></p>
+        </section>
 
-      <h2 id="platnosci">7. Płatności</h2>
-      <p>Po okresie próbnym aplikacja jest dostępna w ramach subskrypcji sprzedawanej przez Google Play. Płatność obsługuje Google na zasadach <a href="https://policies.google.com/privacy" rel="noopener">polityki prywatności Google</a>; wydawca Rejs OS nie otrzymuje danych Twojej karty ani konta bankowego. Aplikacja sprawdza w Google Play jedynie, czy subskrypcja jest aktywna.</p>
+        <section class="pp-sec" id="zasada">
+          <h2><span class="pp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><rect x="9" y="10.5" width="6" height="5" rx="1"/><path d="M10 10.5V9a2 2 0 0 1 4 0v1.5"/></svg></span><span>2. Zasada: dane zostają na telefonie</span></h2>
+          <div class="note pp-note">
+            <p><strong>Rejs OS nie ma własnego serwera, nie wymaga założenia konta i nie wysyła Twoich danych do wydawcy.</strong> Wszystko, co wpisujesz i zapisujesz w aplikacji, jest przechowywane wyłącznie w pamięci Twojego telefonu. Aplikacja nie zawiera reklam ani narzędzi analitycznych i nie śledzi Twojej aktywności.</p>
+          </div>
+          <p>Jedyne połączenia sieciowe, jakie aplikacja wykonuje, idą do usług, które sam włączysz i do których podasz własne klucze lub własne konto (rozdział 6), oraz do Google Play w celu obsługi subskrypcji (rozdział 7).</p>
+        </section>
 
-      <h2 id="kopie">8. Kopie danych i ich usuwanie</h2>
-      <ul>
-        <li>Kopię danych tworzysz sam w zakładce Papiery i zapisujesz, gdzie chcesz (plik). Klucze do usług zewnętrznych nie są umieszczane w kopii.</li>
-        <li>Odinstalowanie aplikacji usuwa wszystkie jej dane z telefonu. Pliki, które sam zapisałeś poza aplikacją lub wysłałeś na Dysk Google, usuwasz samodzielnie.</li>
-        <li>Wydawca nie ma żadnej kopii Twoich danych, więc nie może ich przywrócić ani usunąć za Ciebie.</li>
-      </ul>
+        <section class="pp-sec" id="jakie">
+          <h2><span class="pp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span>3. Jakie dane przetwarza aplikacja</span></h2>
+          <p>Poniższe dane powstają wyłącznie z Twoich działań w aplikacji i są przechowywane lokalnie na telefonie:</p>
+          <div class="tbl pp-tbl"><table>
+            <thead><tr><th>Dane</th><th>Po co</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Dane">Zmiany, przerwy, kursy, zarobki z platform, napiwki</td><td data-label="Po co">Liczenie zarobku po kosztach, godzin online i celów</td></tr>
+              <tr><td data-label="Dane">Wydatki, zdjęcia paragonów i faktur, notatki tekstowe i głosowe</td><td data-label="Po co">Papiery i koszty w jednym miejscu</td></tr>
+              <tr><td data-label="Dane">Plan tygodnia, ustawienia (czynsz, platformy, ZUS, cele, kolor)</td><td data-label="Po co">Działanie aplikacji</td></tr>
+              <tr><td data-label="Dane">Klucze do usług zewnętrznych, które sam wpiszesz (TomTom, usługa pogody, identyfikator klienta Google)</td><td data-label="Po co">Wywoływanie tych usług z Twojego telefonu w Twoim imieniu; klucze nie trafiają do kopii danych ani do wydawcy</td></tr>
+              <tr><td data-label="Dane">Trasa kursu (punkty GPS), tylko jeśli włączysz zapis trasy</td><td data-label="Po co">Archiwum tras i uczenie się kosztu paliwa na kilometr</td></tr>
+              <tr><td data-label="Dane">Przybliżona pozycja telefonu (ostatnia znana)</td><td data-label="Po co">Pogoda i ruch dla Twojej okolicy</td></tr>
+              <tr><td data-label="Dane">Hasło blokady aplikacji</td><td data-label="Po co">Przechowywane wyłącznie jako skrót kryptograficzny z solą; nie da się z niego odczytać hasła</td></tr>
+            </tbody>
+          </table></div>
+        </section>
 
-      <h2 id="prawa">9. Twoje prawa</h2>
-      <p>Ponieważ wydawca nie przechowuje Twoich danych, pełną kontrolę nad nimi masz Ty — na telefonie i na własnych kontach u dostawców z rozdziału 6. Przysługują Ci prawa wynikające z RODO (dostęp, sprostowanie, usunięcie, ograniczenie, przenoszenie, sprzeciw) oraz prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych. W sprawach dotyczących prywatności napisz na adres <a href="mailto:kontakt@rejsos.com">kontakt@rejsos.com</a>.</p>
-      <p>Aplikacja jest przeznaczona dla osób pełnoletnich wykonujących przewóz osób; nie jest kierowana do dzieci.</p>
+        <section class="pp-sec" id="uprawnienia">
+          <h2><span class="pp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span>4. Uprawnienia Androida</span></h2>
+          <ul class="pp-list">
+            <li><strong>Lokalizacja</strong> — pogoda i ruch dla Twojej okolicy, ostrzeżenia o korkach podczas otwartej zmiany oraz zapis trasy kursu (rozdział 5).</li>
+            <li><strong>Aparat</strong> — zdjęcia paragonów i dokumentów. Zdjęcia zostają na telefonie.</li>
+            <li><strong>Mikrofon</strong> — notatki głosowe i dyktowanie. Dyktowanie korzysta z systemowego rozpoznawania mowy Androida, które — zależnie od ustawień Twojego telefonu — może przetwarzać dźwięk u dostawcy tej usługi (zwykle Google) na jego zasadach. Nagrania notatek głosowych zostają na telefonie.</li>
+            <li><strong>Wyświetlanie nad innymi aplikacjami</strong> — opcjonalna „bańka” z przyciskami „Nowy kurs / Koniec kursu” widoczna nad nawigacją. Bańka nie odczytuje treści innych aplikacji.</li>
+            <li><strong>Powiadomienia</strong> — informacja „kurs w toku” podczas zapisu trasy oraz przypomnienia.</li>
+            <li><strong>Biometria</strong> — odblokowanie blokady aplikacji odciskiem palca; obsługuje to system Android, aplikacja nie ma dostępu do danych biometrycznych.</li>
+          </ul>
+          <p>Każde uprawnienie możesz odmówić lub cofnąć w ustawieniach Androida; aplikacja działa wtedy bez danej funkcji.</p>
+        </section>
 
-      <h2 id="zmiany">10. Zmiany tej polityki</h2>
-      <p>Jeśli aplikacja zacznie przetwarzać dane w inny sposób, ta strona zostanie zaktualizowana, a data wersji u góry zmieniona. Istotne zmiany zostaną też opisane w informacji o aktualizacji w Google Play.</p>
-    </article>
+        <section class="pp-sec" id="lokalizacja">
+          <h2><span class="pp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span><span>5. Lokalizacja, także w tle</span></h2>
+          <p>Aplikacja korzysta z lokalizacji w trzech sytuacjach:</p>
+          <ul class="pp-list">
+            <li><strong>Pogoda i ruch</strong> — gdy aplikacja jest otwarta, Twoje przybliżone współrzędne są wysyłane do usługi pogody i do TomTom (na Twoich własnych kluczach), aby pokazać prognozę i natężenie ruchu dla Twojej okolicy.</li>
+            <li><strong>Ostrzeżenia o korkach</strong> — tylko podczas otwartej zmiany i tylko gdy je włączysz w Ustawieniach.</li>
+            <li><strong>Zapis trasy kursu, również gdy aplikacja jest zamknięta lub w tle</strong> — tylko gdy włączysz go w Ustawieniach. Zapis zaczyna się w chwili, gdy sam naciśniesz „Nowy kurs”, i kończy się w chwili naciśnięcia „Koniec kursu”. W tym czasie Android pokazuje stałe powiadomienie „Rejs OS · kurs w toku”. Punkty trasy są zapisywane wyłącznie na telefonie i służą do archiwum tras oraz liczenia kosztu paliwa; nie są nigdzie wysyłane.</li>
+          </ul>
+          <p>Poza kursem aplikacja nie zbiera lokalizacji w tle.</p>
+        </section>
 
-    <footer class="foot" id="kontakt">
+        <section class="pp-sec" id="uslugi">
+          <h2><span class="pp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><span>6. Usługi zewnętrzne na Twoich kontach</span></h2>
+          <p>Rejs OS nie ma wspólnego konta ani wspólnego klucza do żadnej usługi. Jeśli chcesz korzystać z poniższych funkcji, zakładasz własne konto u danego dostawcy, wpisujesz klucz w aplikacji i od tej chwili Twój telefon łączy się z tym dostawcą bezpośrednio, na zasadach jego regulaminu i polityki prywatności:</p>
+          <div class="tbl pp-tbl"><table>
+            <thead><tr><th>Usługa</th><th>Co jest wysyłane</th><th>Kiedy</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Usługa"><a href="https://www.tomtom.com/privacy/" rel="noopener">TomTom</a> (ruch drogowy)</td><td data-label="Co jest wysyłane">Przybliżone współrzędne okolicy, Twój klucz</td><td data-label="Kiedy">Gdy wpiszesz klucz; co kilka minut przy otwartej aplikacji</td></tr>
+              <tr><td data-label="Usługa"><a href="https://www.weatherapi.com/privacy.aspx" rel="noopener">WeatherAPI.com</a> (pogoda)</td><td data-label="Co jest wysyłane">Przybliżone współrzędne okolicy, Twój klucz</td><td data-label="Kiedy">Gdy wpiszesz klucz; co ok. 30 minut przy otwartej aplikacji</td></tr>
+              <tr><td data-label="Usługa"><a href="https://policies.google.com/privacy" rel="noopener">Google Drive</a> (kopia na Dysk)</td><td data-label="Co jest wysyłane">Pliki kopii danych i dokumentów, które aplikacja sama tworzy w folderze „Rejs OS” na Twoim Dysku</td><td data-label="Kiedy">Tylko po Twoim połączeniu konta Google i włączeniu wysyłki; aplikacja prosi wyłącznie o dostęp do plików, które sama utworzyła (zakres <code>drive.file</code>)</td></tr>
+            </tbody>
+          </table></div>
+          <p>Bez wpisanego klucza dana funkcja po prostu nie działa — aplikacja nie korzysta wtedy z żadnej usługi zastępczej.</p>
+        </section>
+
+        <section class="pp-sec" id="platnosci">
+          <h2><span class="pp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg></span><span>7. Płatności</span></h2>
+          <p>Po okresie próbnym aplikacja jest dostępna w ramach subskrypcji sprzedawanej przez Google Play. Płatność obsługuje Google na zasadach <a href="https://policies.google.com/privacy" rel="noopener">polityki prywatności Google</a>; wydawca Rejs OS nie otrzymuje danych Twojej karty ani konta bankowego. Aplikacja sprawdza w Google Play jedynie, czy subskrypcja jest aktywna.</p>
+        </section>
+
+        <section class="pp-sec" id="kopie">
+          <h2><span class="pp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2.5"/><path d="M16 8V5.5A2.5 2.5 0 0 0 13.5 3h-8A2.5 2.5 0 0 0 3 5.5v8A2.5 2.5 0 0 0 5.5 16H8"/></svg></span><span>8. Kopie danych i ich usuwanie</span></h2>
+          <ul class="pp-list">
+            <li>Kopię danych tworzysz sam w zakładce Papiery i zapisujesz, gdzie chcesz (plik). Klucze do usług zewnętrznych nie są umieszczane w kopii.</li>
+            <li>Odinstalowanie aplikacji usuwa wszystkie jej dane z telefonu. Pliki, które sam zapisałeś poza aplikacją lub wysłałeś na Dysk Google, usuwasz samodzielnie.</li>
+            <li>Wydawca nie ma żadnej kopii Twoich danych, więc nie może ich przywrócić ani usunąć za Ciebie.</li>
+          </ul>
+        </section>
+
+        <section class="pp-sec" id="prawa">
+          <h2><span class="pp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-3 7a3.4 3.4 0 0 0 6 0z"/><path d="M19 7l-3 7a3.4 3.4 0 0 0 6 0z"/></svg></span><span>9. Twoje prawa</span></h2>
+          <p>Ponieważ wydawca nie przechowuje Twoich danych, pełną kontrolę nad nimi masz Ty — na telefonie i na własnych kontach u dostawców z rozdziału 6. Przysługują Ci prawa wynikające z RODO (dostęp, sprostowanie, usunięcie, ograniczenie, przenoszenie, sprzeciw) oraz prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych. W sprawach dotyczących prywatności napisz na adres <a href="mailto:michal.wakeline@gmail.com">michal.wakeline@gmail.com</a>.</p>
+          <p>Aplikacja jest przeznaczona dla osób pełnoletnich wykonujących przewóz osób; nie jest kierowana do dzieci.</p>
+        </section>
+
+        <section class="pp-sec" id="zmiany">
+          <h2><span class="pp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg></span><span>10. Zmiany tej polityki</span></h2>
+          <p>Jeśli aplikacja zacznie przetwarzać dane w inny sposób, ta strona zostanie zaktualizowana, a data wersji u góry zmieniona. Istotne zmiany zostaną też opisane w informacji o aktualizacji w Google Play.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <a class="pp-totop" href="#top" aria-label="Do góry" data-doc-aria="top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+
+  <footer class="foot" id="kontakt">
     <div class="wrap">
       <a class="brand" href="./"><img src="img/favicon.png" alt="" width="28" height="28">Rejs OS</a>
-      <a href="./">Strona główna</a>
-      <span>Kontakt: <a href="mailto:kontakt@rejsos.com">kontakt@rejsos.com</a></span>
+      <a href="./" data-doc="home">Strona główna</a>
+      <span><span data-i18n="foot.contact">Kontakt:</span> <a href="mailto:michal.wakeline@gmail.com">michal.wakeline@gmail.com</a></span>
       <span>© 2026</span>
     </div>
   </footer>
+
+  <script src="i18n.js" defer></script>
+  <script src="polityka.js" defer></script>
 </body>
 </html>

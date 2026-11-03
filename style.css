@@ -17,8 +17,9 @@
   --green: #34d399;
   --red: #f87171;
   --blue: #7cb8ff;
-  --display: 'Chakra Petch', 'Barlow Condensed', system-ui, sans-serif;
-  --body: 'Space Grotesk', system-ui, sans-serif;
+  /* Chakra Petch i Space Grotesk nie mają cyrylicy: litery ukraińskie biorą Exo 2 i Manrope (ładowane tylko, gdy są potrzebne) */
+  --display: 'Chakra Petch', 'Exo 2', 'Barlow Condensed', system-ui, sans-serif;
+  --body: 'Space Grotesk', 'Manrope', system-ui, sans-serif;
   --radius: 20px;
   --max: 1120px;
   --gutter-l: max(16px, env(safe-area-inset-left, 0px));
@@ -79,6 +80,38 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .btn .play { width: 18px; height: 18px; }
 @media (max-width: 760px) { .top nav { display: none; } .top .btn { margin-left: auto; } }
 
+/* Przełącznik języka PL / UA / EN: małe pigułki z flagą, zaraz na prawo od logo (tylko z JS — bez niego i tak nie działa) */
+.brandbox { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; }
+.lang { display: none; }
+.js .lang { display: flex; gap: 3px; }
+.lang button {
+  position: relative; display: inline-flex; align-items: center; gap: 4px;
+  height: 22px; padding: 0 7px 0 4px; border: 1px solid var(--line); border-radius: 99px;
+  font-family: var(--display); font-weight: 700; font-size: 10.5px; letter-spacing: .08em; line-height: 1;
+  color: var(--muted); background: color-mix(in srgb, var(--bg-deep) 70%, transparent); cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.lang button::after { content: ""; position: absolute; inset: -10px -1px; } /* pole dotyku ok. 42 px wysokości */
+.lang button:hover { color: var(--text); border-color: var(--line-strong); }
+.lang button[aria-pressed="true"] { background: var(--sign); border-color: var(--sign); color: var(--sign-ink); }
+.flag { width: 13px; height: 13px; border-radius: 50%; flex: 0 0 auto; box-shadow: 0 0 0 1px rgba(255,255,255,.25); background-size: cover; background-position: center; }
+.flag.pl { background: linear-gradient(#fff 50%, #dc143c 50%); }
+.flag.uk { background: linear-gradient(#0057b7 50%, #ffd700 50%); }
+.flag.en { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3CclipPath id='t'%3E%3Cpath d='M30 15h30v15zv15H0zH0V0zV0h30z'/%3E%3C/clipPath%3E%3Cpath d='M0 0v30h60V0z' fill='%23012169'/%3E%3Cpath d='M0 0l60 30m0-30L0 30' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M0 0l60 30m0-30L0 30' clip-path='url(%23t)' stroke='%23C8102E' stroke-width='4'/%3E%3Cpath d='M30 0v30M0 15h60' stroke='%23fff' stroke-width='10'/%3E%3Cpath d='M30 0v30M0 15h60' stroke='%23C8102E' stroke-width='6'/%3E%3C/svg%3E"); background-size: auto 100%; }
+.lang button[aria-pressed="true"] .flag { box-shadow: 0 0 0 1px rgba(12,19,26,.35); }
+.top .btn.small { white-space: nowrap; }
+@media (max-width: 760px) { .top .wrap { gap: 10px; } }
+/* Wąski telefon: w rzędzie z logo zostają same flagi (kod języka czyta czytnik ekranu z aria-label) */
+@media (max-width: 440px) {
+  .brandbox { gap: 7px; }
+  .js .top .brand { font-size: 18px; gap: 7px; }
+  .js .top .brand img { width: 26px; height: 26px; border-radius: 7px; }
+  .lang button { width: 24px; height: 24px; padding: 0; justify-content: center; font-size: 0; letter-spacing: 0; gap: 0; }
+  .lang button .flag { width: 16px; height: 16px; }
+  .lang button[aria-pressed="true"] { box-shadow: 0 0 0 1px var(--sign); }
+  .top .btn.small { font-size: 12.5px; padding: 8px 10px; }
+}
+
 /* ---------- Silnik przewijania ---------- */
 .scrolly { position: relative; }
 .sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
@@ -96,6 +129,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 #jazda .layer .wrap { width: 100%; }
 .hero-title { font-size: clamp(44px, 7.4vw, 104px); font-weight: 700; letter-spacing: -0.01em; max-width: 11ch; }
 .hero-title em { font-style: normal; color: var(--sign); }
+/* Ukraiński tytuł ma dłuższe słowa: trochę mniejszy krój, żeby na telefonie zmieścił się nad wskazówką „przewiń” */
+:root[lang="uk"] .hero-title { font-size: clamp(36px, 6.4vw, 92px); max-width: 13ch; }
 .hero-sub { margin-top: 22px; font-size: clamp(17px, 1.6vw, 20px); color: var(--muted); max-width: 34ch; }
 .hero-cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-hint { position: absolute; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); color: var(--faint); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 8px; }

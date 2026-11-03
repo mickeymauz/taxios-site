@@ -6,6 +6,9 @@
   const ease = (t) => t * t * (3 - 2 * t);
   const ramp = (t) => ease(clamp(t));
   const DPR = Math.min(2, window.devicePixelRatio || 1);
+  // Teksty scen z i18n.js (PL/UA/EN); bez niego zostaje polski
+  const PLT = { m0: 'utarg z aplikacji', m1: 'po prowizji platformy', m2: 'po czynszu za auto', m3: 'po paliwie', m4: 'zarobek po kosztach', cur: 'zł', 'b.new': 'Nowy kurs', 'b.end': 'Koniec kursu', 'b.saved': 'Kurs zapisany', min: 'min', km: 'km', dec: ',' };
+  const t = (k) => (window.rejsI18n ? window.rejsI18n.t(k) : PLT[k]);
   let vw = innerWidth, vh = innerHeight;
 
   // Prosty generator liczb (stałe ziarno → ta sama scena przy każdym wejściu)
@@ -147,15 +150,17 @@
     const split = sec.querySelector('#meter-split');
     const phone = sec.querySelector('.phone');
     const lines = [...sec.querySelectorAll('.lines li')];
-    const steps = [ // [od kiedy, kwota po kroku, podpis]
-      [0.04, 452, 'utarg z aplikacji'],
-      [0.2, 339, 'po prowizji platformy'],
-      [0.36, 210, 'po czynszu za auto'],
-      [0.52, 118, 'zarobek po kosztach'],
+    const steps = [ // [od kiedy, kwota po kroku, klucz podpisu]
+      [0.04, 737, 'm0'],
+      [0.17, 553, 'm1'],
+      [0.3, 424, 'm2'],
+      [0.43, 372, 'm3'],
+      [0.56, 360, 'm4'],
     ];
     let last = '';
     return {
       resize() {},
+      reset() { last = ''; },
       render(p) {
         let v = 0, label = steps[0][2];
         steps.forEach(([at, val, l], i) => {
@@ -163,9 +168,9 @@
           const t = ramp((p - at) / 0.1);
           if (p >= at) { v = from + (val - from) * t; label = l; }
         });
-        const txt = Math.round(v) + ' zł';
+        const txt = Math.round(v) + ' ' + t('cur');
         if (txt !== last) { big.textContent = txt; last = txt; }
-        lbl.textContent = label;
+        lbl.textContent = t(label);
         const done = p >= 0.66;
         big.classList.toggle('done', done);
         split.hidden = p < 0.76;
@@ -279,13 +284,14 @@
         const s = p < 0.16 ? 'start' : p < 0.82 ? 'live' : 'saved';
         bubble.classList.toggle('live', s === 'live');
         bubble.classList.toggle('saved', s === 'saved');
-        if (s === 'start') bt.textContent = 'Nowy kurs';
+        if (s === 'start') bt.textContent = t('b.new');
         else if (s === 'live') {
-          const sec = Math.round(r * 23 * 60), km = (r * 9.4).toFixed(1).replace('.', ',');
-          bt.innerHTML = `Koniec kursu <small>${String(Math.floor(sec / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')} · ${km} km</small>`;
-        } else if (state !== 'saved') bt.innerHTML = 'Kurs zapisany <small>23 min · 9,4 km</small>';
+          const sec = Math.round(r * 23 * 60), km = (r * 9.4).toFixed(1).replace('.', t('dec'));
+          bt.innerHTML = `${t('b.end')} <small>${String(Math.floor(sec / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')} · ${km} ${t('km')}</small>`;
+        } else if (state !== 'saved') bt.innerHTML = `${t('b.saved')} <small>23 ${t('min')} · 9${t('dec')}4 ${t('km')}</small>`;
         state = s;
       },
+      reset() { state = ''; },
     };
   }
 
@@ -349,9 +355,18 @@
     else { const io = new IntersectionObserver((e) => { if (e.some((x) => x.isIntersecting)) { show(); io.disconnect(); } }, { threshold: 0.2 }); io.observe(perks); setTimeout(() => { if (perks.getBoundingClientRect().top < innerHeight) show(); }, 3000); }
   }
 
+  // Zmiana języka: nowe długości tekstów (pas funkcji) i napisy rysowane z JS
+  let kick = () => {};
+  document.addEventListener('rejs:lang', () => {
+    vw = innerWidth; vh = innerHeight;
+    scenes.forEach((s) => { s.reset && s.reset(); s.resize(); s.last = -1; });
+    if (RM) scenes.forEach((s) => s.render(still[s.sec.dataset.scene]));
+    else kick();
+  });
+
   // Statyczna wersja: każda scena pokazuje swój kluczowy kadr
+  const still = { hero: 0.45, meter: 1, track: 0, bubble: 0.6, vault: 1 };
   if (RM) {
-    const still = { hero: 0.45, meter: 1, track: 0, bubble: 0.6, vault: 1 };
     scenes.forEach((s) => s.render(still[s.sec.dataset.scene]));
     addEventListener('resize', () => { vw = innerWidth; vh = innerHeight; scenes.forEach((s) => { s.resize(); s.render(still[s.sec.dataset.scene]); }); });
     return;
@@ -370,7 +385,7 @@
     running = moving;
     if (moving) requestAnimationFrame(frame);
   }
-  const kick = () => { if (!running) { running = true; requestAnimationFrame(frame); } };
+  kick = () => { if (!running) { running = true; requestAnimationFrame(frame); } };
 
   const top = document.getElementById('top');
   addEventListener('scroll', () => { top.classList.toggle('solid', scrollY > 40); kick(); }, { passive: true });
