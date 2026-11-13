@@ -182,7 +182,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* ---------- Telefon (makieta urządzenia) ---------- */
 .device {
-  --ar: 9 / 19.5;
+  --ar: 9 / 20.4; /* zrzuty 360×800 jak telefon (14.11; wcześniej 9 / 19.5 przy zrzutach 360×700) */
   position: relative; aspect-ratio: var(--ar); padding: 1.9%;
   border-radius: 13% / 6%;
   background: linear-gradient(160deg, #161b21 0%, #0a0d10 50%, #12161b 100%);
